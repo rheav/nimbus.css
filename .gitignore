@@ -6,6 +6,11 @@ node_modules/
 Thumbs.db
 
 # IDE Files
-.vscode/
 .idea/
 
+# Old/unused files
+JSDELIVR-HOSTING-GUIDE.md
+TERMINAL-GIT-GUIDE.md
+deploy.sh
+check-auth.sh
+MIGRATION-SUMMARY.md

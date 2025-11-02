@@ -1,31 +1,32 @@
 {
-  "name": "cloud-ui",
+  "name": "nimbus.css",
   "version": "1.0.0",
-  "description": "Minimal CSS library with metallic gradients and frosted glass effects",
-  "main": "cloud-ui.css",
-  "style": "cloud-ui.css",
+  "description": "Lightweight CSS library with opinionated defaults, frosted glass effects, and metallic gradients",
+  "main": "nimbus.css",
+  "style": "nimbus.css",
   "files": [
-    "cloud-ui.css",
-    "cloud-ui.min.css",
+    "nimbus.css",
+    "nimbus.min.css",
     "README.md"
   ],
   "keywords": [
     "css",
-    "ui",
-    "design-system",
+    "lightweight",
+    "minimal",
     "frosted-glass",
     "gradients",
-    "cloud-ui",
-    "metallic"
+    "nimbus",
+    "metallic",
+    "component-library"
   ],
   "author": "rheav",
   "license": "MIT",
-  "homepage": "https://github.com/rheav/cloud-ui",
+  "homepage": "https://github.com/rheav/nimbus.css",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rheav/cloud-ui.git"
+    "url": "git+https://github.com/rheav/nimbus.css.git"
   },
   "bugs": {
-    "url": "https://github.com/rheav/cloud-ui/issues"
+    "url": "https://github.com/rheav/nimbus.css/issues"
   }
 }
