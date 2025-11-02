@@ -2,11 +2,11 @@
   "name": "cloud-ui",
   "version": "1.0.0",
   "description": "Minimal CSS library with metallic gradients and frosted glass effects",
-  "main": "cloudi.css",
-  "style": "cloudi.css",
+  "main": "cloud-ui.css",
+  "style": "cloud-ui.css",
   "files": [
-    "cloudi.css",
-    "cloudi.min.css",
+    "cloud-ui.css",
+    "cloud-ui.min.css",
     "README.md"
   ],
   "keywords": [
@@ -15,17 +15,17 @@
     "design-system",
     "frosted-glass",
     "gradients",
-    "cloudi",
+    "cloud-ui",
     "metallic"
   ],
-  "author": "Your Name",
+  "author": "rheav",
   "license": "MIT",
-  "homepage": "https://github.com/yourusername/cloudi",
+  "homepage": "https://github.com/rheav/cloud-ui",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/cloudi.git"
+    "url": "git+https://github.com/rheav/cloud-ui.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/cloudi/issues"
+    "url": "https://github.com/rheav/cloud-ui/issues"
   }
 }

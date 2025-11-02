@@ -9,10 +9,3 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Old files
-demo.html
-demo-library.html
-nimbus-ui.css
-styles.css
-README.md
-example-basic.html
