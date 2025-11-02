@@ -1,5 +1,5 @@
 {
-  "name": "cloudi",
+  "name": "cloud-ui",
   "version": "1.0.0",
   "description": "Minimal CSS library with metallic gradients and frosted glass effects",
   "main": "cloudi.css",
