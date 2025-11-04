@@ -1,6 +1,6 @@
 {
   "name": "nimbus.css",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Lightweight CSS library with opinionated defaults, frosted glass effects, and metallic gradients",
   "main": "nimbus.css",
   "style": "nimbus.css",
