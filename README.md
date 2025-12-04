@@ -80,6 +80,45 @@ All components use the `nc-` prefix. Write semantic HTML, apply component classe
 </div>
 ```
 
+### Complete Card Example
+
+A comprehensive card example combining multiple components:
+
+```html
+<div class="nc-card">
+  <!-- Image placeholder -->
+  <div class="nc-card-image nc-card-image-gradient">🌊 nimbus</div>
+
+  <!-- Tags/Chips -->
+  <div class="nc-mb-sm">
+    <span class="nc-chip nc-chip-primary">design system</span>
+    <span class="nc-chip nc-chip-success">new</span>
+    <span class="nc-chip nc-chip-default">v1.0</span>
+  </div>
+
+  <!-- Title -->
+  <h3 class="nc-card-title">nimbus library</h3>
+
+  <!-- Description -->
+  <p class="nc-card-text nc-text-sm">
+    a minimal, lightweight CSS library with a modern frosted glass design
+    aesthetic. Perfect for building beautiful interfaces quickly.
+  </p>
+
+  <!-- Meta info -->
+  <div class="nc-card-meta">
+    <span>👤 12 contributors</span>
+    <span>⭐ 234 stars</span>
+  </div>
+
+  <!-- Action buttons -->
+  <div class="nc-card-actions">
+    <button class="nc-btn nc-btn-primary">get started</button>
+    <button class="nc-btn nc-btn-outline">documentation</button>
+  </div>
+</div>
+```
+
 ### Forms
 
 ```html
@@ -428,10 +467,45 @@ Clickable list items with hover slide effect:
 <span class="nc-text-midnight">Near-black text</span>
 ```
 
-### Gradient Text
+### Text Effects
+
+#### Gradient Text
 
 ```html
+<!-- Gradient Title -->
 <h1 class="nc-title-gradient">Gradient Title</h1>
+
+<!-- Gradient Spans -->
+<span class="nc-text-gradient">frost to ocean gradient</span>
+<span class="nc-text-gradient-ocean">ocean to sapphire</span>
+<span class="nc-text-gradient-emerald">emerald gradient</span>
+<span class="nc-text-gradient-sunset">sunset gradient</span>
+<span class="nc-text-gradient-silver">silver metallic</span>
+<span class="nc-text-gradient-animated">animated gradient</span>
+```
+
+#### Text Glow
+
+```html
+<span class="nc-text-glow">frost glow effect</span>
+<span class="nc-text-glow-ocean">ocean glow effect</span>
+<span class="nc-text-glow-emerald">emerald glow effect</span>
+```
+
+#### Text Highlights
+
+```html
+<span class="nc-text-highlight">frost highlight</span>
+<span class="nc-text-highlight-ocean">ocean highlight</span>
+<span class="nc-text-highlight-emerald">emerald highlight</span>
+<span class="nc-text-highlight-sandy">sandy highlight</span>
+```
+
+#### Underline Effects
+
+```html
+<span class="nc-text-underline">hover for animated underline</span>
+<span class="nc-text-underline-static">static gradient underline</span>
 ```
 
 ### Custom Scrollbar
