@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nimbus.css - component gallery</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="nimbus.css" />
+    <style>
+      /* Gallery specific styles */
+      :root {
+        --gallery-sidebar-width: 260px;
+      }
+
+      body {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      /* Sidebar */
+      .gallery-sidebar {
+        width: var(--gallery-sidebar-width);
+        background: var(--nc-snow);
+        border-right: 1px solid var(--nc-border-primary);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        overflow-y: auto;
+        padding: 2rem 1.5rem;
+        z-index: 10;
+      }
+
+      .gallery-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--nc-midnight);
+        margin-bottom: 2rem;
+        display: block;
+        text-decoration: none;
+      }
+
+      .gallery-nav-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .gallery-nav-title {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--nc-pebble);
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+      }
+
+      .gallery-nav-link {
+        display: block;
+        padding: 0.5rem 0;
+        color: var(--nc-ink);
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .gallery-nav-link:hover {
+        color: var(--nc-ocean);
+      }
+
+      /* Main Content */
+      .gallery-main {
+        flex: 1;
+        margin-left: var(--gallery-sidebar-width);
+        padding: 3rem 4rem;
+        max-width: 1000px;
+      }
+
+      .component-section {
+        margin-bottom: 4rem;
+        scroll-margin-top: 2rem;
+      }
+
+      .component-header {
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--nc-border-primary);
+        padding-bottom: 1rem;
+      }
+
+      .component-title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .component-desc {
+        color: var(--nc-pebble);
+        font-size: 1.1rem;
+      }
+
+      /* Component Viewer */
+      .component-viewer {
+        border: 1px solid var(--nc-border-primary);
+        border-radius: var(--nc-radius-lg);
+        background: var(--nc-snow);
+        overflow: hidden;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+
+      .viewer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--nc-border-primary);
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(5px);
+      }
+
+      .viewer-tabs {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .viewer-tab {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--nc-pebble);
+        cursor: pointer;
+        border-radius: var(--nc-radius-sm);
+        transition: all 0.2s;
+        background: transparent;
+        border: none;
+      }
+
+      .viewer-tab:hover {
+        color: var(--nc-ink);
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      .viewer-tab.active {
+        color: var(--nc-ocean);
+        background: rgba(160, 210, 235, 0.2);
+      }
+
+      .viewer-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .copy-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+        border: 1px solid var(--nc-border-primary);
+        border-radius: var(--nc-radius-sm);
+        background: white;
+        cursor: pointer;
+        color: var(--nc-ink);
+        transition: all 0.2s;
+      }
+
+      .copy-btn:hover {
+        border-color: var(--nc-ocean);
+        color: var(--nc-ocean);
+      }
+
+      .preview-area {
+        padding: 3rem;
+        background: white;
+        background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+        background-size: 20px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 200px;
+      }
+
+      /* For components that need full width in preview */
+      .preview-area.full-width {
+        display: block;
+      }
+
+      .code-area {
+        display: none;
+        background: var(--nc-midnight);
+        padding: 1.5rem;
+        overflow-x: auto;
+        margin: 0;
+      }
+
+      .code-area.active {
+        display: block;
+      }
+
+      .code-area pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        color: #e5e7eb;
+        font-family: "Monaco", "Consolas", monospace;
+        font-size: 0.875rem;
+      }
+
+      /* Syntax highlighting simple overrides */
+      .tag {
+        color: #f472b6;
+      }
+      .attr-name {
+        color: #93c5fd;
+      }
+      .attr-value {
+        color: #a5f3fc;
+      }
+      .comment {
+        color: #6b7280;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="gallery-sidebar">
+      <a href="#" class="gallery-logo">
+        <span style="margin-right: 0.5rem">☁️</span> nimbus.css
+      </a>
+
+      <div class="gallery-nav-group">
+        <div class="gallery-nav-title">components</div>
+        <a href="#alerts" class="gallery-nav-link">alerts</a>
+        <a href="#avatars" class="gallery-nav-link">avatars</a>
+        <a href="#badges" class="gallery-nav-link">badges & chips</a>
+        <a href="#buttons" class="gallery-nav-link">buttons</a>
+        <a href="#cards" class="gallery-nav-link">cards</a>
+        <a href="#colors" class="gallery-nav-link">color palette</a>
+        <a href="#complete-card" class="gallery-nav-link">complete card</a>
+        <a href="#inputs" class="gallery-nav-link">inputs & forms</a>
+        <a href="#skeleton" class="gallery-nav-link">skeleton</a>
+        <a href="#tables" class="gallery-nav-link">tables</a>
+        <a href="#tabs" class="gallery-nav-link">tabs</a>
+        <a href="#text-effects" class="gallery-nav-link">text effects</a>
+        <a href="#tips" class="gallery-nav-link">tip boxes</a>
+        <a href="#typography" class="gallery-nav-link"
+          >typography & semantics</a
+        >
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="gallery-main">
+      <div style="margin-bottom: 4rem">
+        <h1 style="font-size: 3rem; margin-bottom: 1rem">component gallery</h1>
+        <p style="font-size: 1.25rem; color: var(--nc-pebble)">
+          interactive components for the nimbus.css library. Copy and paste
+          directly into your project.
+        </p>
+      </div>
+
+      <!-- Alerts -->
+      <section id="alerts" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">alerts</h2>
+          <p class="component-desc">
+            contextual feedback messages for user actions.
+          </p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area full-width">
+            <div
+              class="preview-content"
+              style="max-width: 600px; margin: 0 auto"
+            >
+              <div class="nc-alert nc-alert-info">
+                <div class="nc-alert-title">ℹ️ information</div>
+                this is an informational message.
+              </div>
+
+              <div class="nc-alert nc-alert-success">
+                <div class="nc-alert-title">✓ success</div>
+                operation completed successfully.
+              </div>
+
+              <div class="nc-alert nc-alert-danger">
+                <div class="nc-alert-title">✗ error</div>
+                something went wrong, please try again.
+              </div>
+
+              <div class="nc-alert nc-alert-warning">
+                <div class="nc-alert-title">⚠️ warning</div>
+                please review before proceeding.
+              </div>
+
+              <div class="nc-alert nc-alert-silver">
+                <div class="nc-alert-title nc-text-snow">✨ silver alert</div>
+                <span class="nc-text-snow"
+                  >a premium metallic style alert.</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Avatars -->
+      <section id="avatars" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">avatars</h2>
+          <p class="component-desc">user profile images and initials.</p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area">
+            <div
+              class="preview-content"
+              style="display: flex; gap: 1rem; align-items: center"
+            >
+              <span class="nc-avatar nc-avatar-sm">SM</span>
+              <span class="nc-avatar">MD</span>
+              <span class="nc-avatar nc-avatar-lg">LG</span>
+
+              <span class="nc-avatar-wrapper">
+                <span class="nc-avatar">JD</span>
+                <span class="nc-avatar-status nc-avatar-status-online"></span>
+              </span>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Badges -->
+      <section id="badges" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">badges & chips</h2>
+          <p class="component-desc">
+            small elements for status, tags, and labels.
+          </p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area">
+            <div
+              class="preview-content"
+              style="display: flex; gap: 0.5rem; flex-wrap: wrap"
+            >
+              <span class="nc-badge nc-badge-primary">primary</span>
+              <span class="nc-badge nc-badge-success">success</span>
+              <span class="nc-badge nc-badge-warning">warning</span>
+              <span class="nc-badge nc-badge-danger">danger</span>
+
+              <div style="width: 100%; height: 1rem"></div>
+
+              <span class="nc-chip nc-chip-default">#design</span>
+              <span class="nc-chip nc-chip-primary">#code</span>
+              <span class="nc-chip nc-chip-success">#new</span>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Buttons -->
+      <section id="buttons" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">buttons</h2>
+          <p class="component-desc">
+            standard button styles with various states and variants.
+          </p>
+        </div>
+
+        <!-- Primary Buttons -->
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area full-width">
+            <div class="preview-content">
+              <div class="nc-flex-demo nc-mb-md">
+                <button class="nc-btn nc-btn-primary">primary</button>
+                <button class="nc-btn nc-btn-secondary">secondary</button>
+                <button class="nc-btn nc-btn-success">success</button>
+                <button class="nc-btn nc-btn-danger">danger</button>
+                <button class="nc-btn nc-btn-warning">warning</button>
+                <button class="nc-btn nc-btn-ghost">ghost</button>
+                <button class="nc-btn nc-btn-outline">outline</button>
+              </div>
+              <div
+                class="nc-flex-demo nc-card-silver"
+                style="padding: 1rem; border-radius: var(--nc-radius-lg)"
+              >
+                <button class="nc-btn nc-btn-outline-fog">outline fog</button>
+              </div>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+
+        <!-- Button Sizes -->
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area">
+            <div class="preview-content nc-flex-demo">
+              <button class="nc-btn nc-btn-primary nc-btn-sm">small</button>
+              <button class="nc-btn nc-btn-primary">default</button>
+              <button class="nc-btn nc-btn-primary nc-btn-lg">large</button>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+
+        <!-- Loading & Radius States -->
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area">
+            <div class="preview-content nc-flex-demo">
+              <button class="nc-btn nc-btn-primary nc-btn-loading">
+                loading
+              </button>
+              <button class="nc-btn nc-btn-success nc-btn-loading">
+                saving
+              </button>
+              <button class="nc-btn nc-btn-primary nc-rounded-sm">
+                no radius
+              </button>
+              <button class="nc-btn nc-btn-primary nc-rounded-lg">
+                large radius
+              </button>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cards -->
+      <section id="cards" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">cards</h2>
+          <p class="component-desc">
+            container components with frosted glass or solid backgrounds.
+          </p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area full-width">
+            <div class="preview-content nc-preview-centered">
+              <div class="nc-card">
+                <h3 class="nc-card-title">frosted card</h3>
+                <p class="nc-card-text">
+                  this is the default card style with a beautiful backdrop blur
+                  effect.
+                </p>
+                <button class="nc-btn nc-btn-primary nc-btn-sm">action</button>
+              </div>
+
+              <div class="nc-card nc-card-solid">
+                <h3 class="nc-card-title">solid card</h3>
+                <p class="nc-card-text">
+                  a solid background alternative for when transparency isn't
+                  needed.
+                </p>
+                <button class="nc-btn nc-btn-outline nc-btn-sm">
+                  learn more
+                </button>
+              </div>
+
+              <div class="nc-card nc-card-gradient">
+                <h3 class="nc-card-title nc-text-snow">gradient card</h3>
+                <p class="nc-text-snow">
+                  eye-catching gradient background perfect for featured content.
+                </p>
+                <button class="nc-btn nc-btn-secondary nc-btn-sm">
+                  get started
+                </button>
+              </div>
+
+              <div class="nc-card-silver">
+                <h3 class="nc-card-title nc-text-snow">silver gradient card</h3>
+                <p class="nc-text-snow">
+                  beautiful silver-ish gradient with metallic finish effect.
+                </p>
+                <button class="nc-btn nc-btn-outline-fog nc-btn-sm">
+                  explore
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Color Palette -->
+      <section id="colors" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">color palette</h2>
+          <p class="component-desc">the core color system of nimbus.css.</p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area full-width">
+            <div class="preview-content">
+              <div class="nc-color-grid">
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-frost)"
+                  ></div>
+                  <strong>frost</strong>
+                  <code>#a0d2eb</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-fog)"
+                  ></div>
+                  <strong>fog</strong>
+                  <code>#e5eaf5</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-ocean)"
+                  ></div>
+                  <strong>ocean</strong>
+                  <code>#0077b6</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-sky)"
+                  ></div>
+                  <strong>sky</strong>
+                  <code>#caf0f8</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-sapphire)"
+                  ></div>
+                  <strong>sapphire</strong>
+                  <code>#0284c7</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-emerald)"
+                  ></div>
+                  <strong>emerald</strong>
+                  <code>#10b981</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-forest)"
+                  ></div>
+                  <strong>forest</strong>
+                  <code>#065f46</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-sandy)"
+                  ></div>
+                  <strong>sandy</strong>
+                  <code>#fbbf24</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-danger)"
+                  ></div>
+                  <strong>danger</strong>
+                  <code>#dc626b</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-pebble)"
+                  ></div>
+                  <strong>pebble</strong>
+                  <code>#6b7280</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-ink)"
+                  ></div>
+                  <strong>ink</strong>
+                  <code>#1e293b</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-midnight)"
+                  ></div>
+                  <strong>midnight</strong>
+                  <code>#0f172a</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-snow)"
+                  ></div>
+                  <strong>snow</strong>
+                  <code>#f8fafc</code>
+                </div>
+                <div class="nc-color-box">
+                  <div
+                    class="nc-color-swatch"
+                    style="background: var(--nc-ash)"
+                  ></div>
+                  <strong>ash</strong>
+                  <code>#f1f5f9</code>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Complete Card Example -->
+      <section id="complete-card" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">complete card example</h2>
+          <p class="component-desc">
+            a comprehensive card example combining multiple components.
+          </p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area full-width">
+            <div class="preview-content nc-preview-centered">
+              <div class="nc-card">
+                <!-- Image placeholder -->
+                <div class="nc-card-image nc-card-image-gradient">
+                  🌊 nimbus
+                </div>
+
+                <!-- Tags/Chips -->
+                <div class="nc-mb-sm">
+                  <span class="nc-chip nc-chip-primary">design system</span>
+                  <span class="nc-chip nc-chip-success">new</span>
+                  <span class="nc-chip nc-chip-default">v1.0</span>
+                </div>
+
+                <!-- Title -->
+                <h3 class="nc-card-title">nimbus library</h3>
+
+                <!-- Description -->
+                <p class="nc-card-text nc-text-sm">
+                  a minimal, lightweight CSS library with a modern frosted glass
+                  design aesthetic. Perfect for building beautiful interfaces
+                  quickly.
+                </p>
+
+                <!-- Meta info -->
+                <div class="nc-card-meta">
+                  <span>👤 12 contributors</span>
+                  <span>⭐ 234 stars</span>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="nc-card-actions">
+                  <button class="nc-btn nc-btn-primary">get started</button>
+                  <button class="nc-btn nc-btn-outline">documentation</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Inputs -->
+      <section id="inputs" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">inputs & forms</h2>
+          <p class="component-desc">form controls for capturing user data.</p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area full-width">
+            <div
+              class="preview-content"
+              style="max-width: 500px; margin: 0 auto"
+            >
+              <div class="nc-input-group">
+                <label class="nc-input-label">email address</label>
+                <input
+                  type="email"
+                  class="nc-input"
+                  placeholder="name@example.com"
+                />
+              </div>
+
+              <div class="nc-input-group">
+                <label class="nc-input-label">category</label>
+                <select class="nc-select">
+                  <option>select an option...</option>
+                  <option>design</option>
+                  <option>development</option>
+                  <option>marketing</option>
+                </select>
+              </div>
+
+              <div class="nc-input-group">
+                <label class="nc-switch">
+                  <input type="checkbox" checked />
+                  <span class="nc-switch-track">
+                    <span class="nc-switch-thumb"></span>
+                  </span>
+                  <span class="nc-switch-label">enable notifications</span>
+                </label>
+              </div>
+
+              <div class="nc-input-group">
+                <label class="nc-input-label">message</label>
+                <textarea
+                  class="nc-input nc-textarea"
+                  placeholder="enter your message..."
+                ></textarea>
+              </div>
+
+              <div class="nc-input-group nc-input-error">
+                <label class="nc-input-label">email (error)</label>
+                <input type="email" class="nc-input" value="invalid-email" />
+                <span class="nc-input-hint"
+                  >please enter a valid email address</span
+                >
+              </div>
+
+              <div class="nc-input-group nc-input-success">
+                <label class="nc-input-label">username (success)</label>
+                <input type="text" class="nc-input" value="johndoe" />
+                <span class="nc-input-hint">username is available!</span>
+              </div>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skeleton -->
+      <section id="skeleton" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">skeleton</h2>
+          <p class="component-desc">loading placeholders for content.</p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area full-width">
+            <div class="preview-content nc-preview-centered">
+              <div class="nc-skeleton-card">
+                <div class="nc-flex nc-gap-md nc-mb-md">
+                  <div class="nc-skeleton nc-skeleton-avatar"></div>
+                  <div class="nc-flex-1">
+                    <div class="nc-skeleton nc-skeleton-text nc-w-half"></div>
+                    <div
+                      class="nc-skeleton nc-skeleton-text"
+                      style="width: 30%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="nc-skeleton nc-skeleton-image nc-mb-md"></div>
+                <div class="nc-skeleton nc-skeleton-text"></div>
+                <div class="nc-skeleton nc-skeleton-text"></div>
+              </div>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tables -->
+      <section id="tables" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">tables</h2>
+          <p class="component-desc">clean data display with hover states.</p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area full-width">
+            <div class="preview-content">
+              <div class="nc-table-wrapper">
+                <table class="nc-table">
+                  <thead>
+                    <tr>
+                      <th>name</th>
+                      <th>status</th>
+                      <th>role</th>
+                      <th>action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>jane cooper</td>
+                      <td>
+                        <span class="nc-badge nc-badge-success">active</span>
+                      </td>
+                      <td>admin</td>
+                      <td>
+                        <button class="nc-btn nc-btn-ghost nc-btn-sm">
+                          edit
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>cody fisher</td>
+                      <td>
+                        <span class="nc-badge nc-badge-warning">pending</span>
+                      </td>
+                      <td>editor</td>
+                      <td>
+                        <button class="nc-btn nc-btn-ghost nc-btn-sm">
+                          edit
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tabs -->
+      <section id="tabs" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">tabs</h2>
+          <p class="component-desc">
+            navigation tabs for switching between views.
+          </p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area">
+            <div class="preview-content">
+              <div class="nc-tab-group">
+                <button class="nc-tab-active nc-tab-first">for teams</button>
+                <button class="nc-tab-inactive nc-tab-middle">
+                  for managers
+                </button>
+                <button class="nc-tab-inactive nc-tab-last">
+                  for executives
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Text Effects -->
+      <section id="text-effects" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">text effects</h2>
+          <p class="component-desc">
+            gradient text, glows, highlights, and animated effects.
+          </p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area full-width">
+            <div class="preview-content nc-preview-wide">
+              <!-- Gradient Text -->
+              <h3 class="nc-mb-md">gradient text</h3>
+              <div class="nc-mb-lg">
+                <p
+                  style="
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  <span class="nc-text-gradient">frost to ocean gradient</span>
+                </p>
+                <p
+                  style="
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  <span class="nc-text-gradient-ocean">ocean to sapphire</span>
+                </p>
+                <p
+                  style="
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  <span class="nc-text-gradient-emerald">emerald gradient</span>
+                </p>
+                <p
+                  style="
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  <span class="nc-text-gradient-sunset">sunset gradient</span>
+                </p>
+                <p
+                  style="
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  <span class="nc-text-gradient-silver">silver metallic</span>
+                </p>
+                <p style="font-size: 1.5rem; font-weight: 600">
+                  <span class="nc-text-gradient-animated"
+                    >animated gradient</span
+                  >
+                </p>
+              </div>
+
+              <!-- Glow Effects -->
+              <h3 class="nc-mb-md">text glow</h3>
+              <div
+                class="nc-mb-lg"
+                style="
+                  background: var(--nc-midnight);
+                  padding: 1.5rem;
+                  border-radius: var(--nc-radius-lg);
+                "
+              >
+                <p
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    color: var(--nc-frost);
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  <span class="nc-text-glow">frost glow effect</span>
+                </p>
+                <p
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    color: var(--nc-ocean);
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  <span class="nc-text-glow-ocean">ocean glow effect</span>
+                </p>
+                <p
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    color: var(--nc-emerald);
+                  "
+                >
+                  <span class="nc-text-glow-emerald">emerald glow effect</span>
+                </p>
+              </div>
+
+              <!-- Highlight Effects -->
+              <h3 class="nc-mb-md">highlighted text</h3>
+              <div class="nc-mb-lg">
+                <p style="margin-bottom: 0.5rem">
+                  this text has a
+                  <span class="nc-text-highlight">frost highlight</span> marker
+                  effect.
+                </p>
+                <p style="margin-bottom: 0.5rem">
+                  this text has an
+                  <span class="nc-text-highlight-ocean">ocean highlight</span>
+                  marker effect.
+                </p>
+                <p style="margin-bottom: 0.5rem">
+                  this text has an
+                  <span class="nc-text-highlight-emerald"
+                    >emerald highlight</span
+                  >
+                  marker effect.
+                </p>
+                <p>
+                  this text has a
+                  <span class="nc-text-highlight-sandy">sandy highlight</span>
+                  marker effect.
+                </p>
+              </div>
+
+              <!-- Underline Effects -->
+              <h3 class="nc-mb-md">underline effects</h3>
+              <div>
+                <p style="margin-bottom: 0.75rem">
+                  <span class="nc-text-underline" style="font-size: 1.125rem"
+                    >hover for animated underline</span
+                  >
+                </p>
+                <p>
+                  <span
+                    class="nc-text-underline-static"
+                    style="font-size: 1.125rem"
+                    >static gradient underline</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tips -->
+      <section id="tips" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">tip boxes</h2>
+          <p class="component-desc">
+            highlighted boxes for tips, warnings, or important notes.
+          </p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area full-width">
+            <div
+              class="preview-content"
+              style="max-width: 600px; margin: 0 auto"
+            >
+              <div class="nc-tip" style="margin-bottom: 1rem">
+                💡 <strong>pro tip:</strong> this is a standard tip box.
+              </div>
+
+              <div class="nc-tip nc-tip-ocean" style="margin-bottom: 1rem">
+                🌊 <strong>ocean variant:</strong> uses the ocean gradient.
+              </div>
+
+              <div class="nc-tip nc-tip-emerald">
+                ✓ <strong>success tip:</strong> great for positive
+                reinforcement.
+              </div>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography & Semantics -->
+      <section id="typography" class="component-section">
+        <div class="component-header">
+          <h2 class="component-title">typography & semantics</h2>
+          <p class="component-desc">
+            standard html elements with nimbus styling.
+          </p>
+        </div>
+
+        <div class="component-viewer">
+          <div class="viewer-header">
+            <div class="viewer-tabs">
+              <button
+                class="viewer-tab active"
+                onclick="switchTab(this, 'preview')"
+              >
+                preview
+              </button>
+              <button class="viewer-tab" onclick="switchTab(this, 'code')">
+                HTML
+              </button>
+            </div>
+            <div class="viewer-actions">
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                copy code
+              </button>
+            </div>
+          </div>
+          <div class="preview-area full-width">
+            <div class="preview-content nc-preview-wide">
+              <blockquote>
+                "simplicity is the ultimate sophistication."
+              </blockquote>
+
+              <details>
+                <summary>click to expand me</summary>
+                <p>
+                  hidden content revealed! useful for faqs or extra details.
+                </p>
+              </details>
+
+              <div class="nc-mb-md">
+                <label class="nc-input-label">loading...</label>
+                <progress value="70" max="100"></progress>
+              </div>
+
+              <p>
+                press <kbd>cmd</kbd> + <kbd>c</kbd> to copy.
+                <br />
+                use <mark>highlighted text</mark> for emphasis.
+              </p>
+            </div>
+          </div>
+          <div class="code-area">
+            <pre><code></code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Initialize all code blocks
+      document.addEventListener("DOMContentLoaded", () => {
+        const viewers = document.querySelectorAll(".component-viewer");
+
+        viewers.forEach((viewer) => {
+          const previewContent = viewer.querySelector(".preview-content");
+          const codeBlock = viewer.querySelector(".code-area code");
+
+          if (previewContent && codeBlock) {
+            // Get HTML and strip leading/trailing whitespace
+            let html = previewContent.innerHTML;
+
+            // Remove the outer indentation common to all lines
+            const lines = html.split("\n");
+            // Find first non-empty line to determine indentation
+            const firstLine = lines.find((line) => line.trim().length > 0);
+
+            if (firstLine) {
+              const indentMatch = firstLine.match(/^\s*/);
+              const indent = indentMatch ? indentMatch[0] : "";
+
+              if (indent) {
+                html = lines
+                  .map((line) =>
+                    line.startsWith(indent)
+                      ? line.substring(indent.length)
+                      : line
+                  )
+                  .join("\n");
+              }
+            }
+
+            // Trim empty lines at start/end
+            html = html.replace(/^\s*[\r\n]/gm, "").trim();
+
+            // Escape HTML for display
+            codeBlock.textContent = html;
+          }
+        });
+
+        // Interactive Tabs Logic for Component Examples
+        const tabContainers = document.querySelectorAll(
+          ".nc-tabs, #demo-tabs, .nc-tab-group"
+        );
+
+        tabContainers.forEach((container) => {
+          const tabs = container.querySelectorAll(
+            ".nc-tab, .nc-tab-active, .nc-tab-inactive"
+          );
+
+          tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+              // Deactivate all tabs in this container
+              tabs.forEach((t) => {
+                if (t.classList.contains("nc-tab-active")) {
+                  t.classList.remove("nc-tab-active");
+                  t.classList.add("nc-tab-inactive");
+                } else if (t.classList.contains("active")) {
+                  // Handle .nc-tab.active style
+                  t.classList.remove("active");
+                }
+              });
+
+              // Activate clicked tab
+              if (tab.classList.contains("nc-tab-inactive")) {
+                tab.classList.remove("nc-tab-inactive");
+                tab.classList.add("nc-tab-active");
+              } else if (tab.classList.contains("nc-tab")) {
+                // Handle .nc-tab style
+                tab.classList.add("active");
+              }
+            });
+          });
+        });
+      });
+
+      function switchTab(btn, tabName) {
+        const viewer = btn.closest(".component-viewer");
+        const tabs = viewer.querySelectorAll(".viewer-tab");
+        const previewArea = viewer.querySelector(".preview-area");
+        const codeArea = viewer.querySelector(".code-area");
+
+        // Update tabs
+        tabs.forEach((t) => t.classList.remove("active"));
+        btn.classList.add("active");
+
+        // Update content
+        if (tabName === "preview") {
+          previewArea.style.display = previewArea.classList.contains(
+            "full-width"
+          )
+            ? "block"
+            : "flex";
+          codeArea.style.display = "none";
+        } else {
+          previewArea.style.display = "none";
+          codeArea.style.display = "block";
+        }
+      }
+
+      function copyCode(btn) {
+        const viewer = btn.closest(".component-viewer");
+        const code = viewer.querySelector(".code-area code").textContent;
+
+        navigator.clipboard.writeText(code).then(() => {
+          const originalText = btn.innerHTML;
+          btn.innerHTML = "✓ Copied!";
+          btn.style.color = "var(--nc-emerald)";
+          btn.style.borderColor = "var(--nc-emerald)";
+
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.color = "";
+            btn.style.borderColor = "";
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>

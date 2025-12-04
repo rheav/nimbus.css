@@ -1,0 +1,35 @@
+{
+  "name": "nimbus.css",
+  "version": "1.7.0",
+  "description": "Lightweight CSS library with opinionated defaults, frosted glass effects, and metallic gradients",
+  "main": "nimbus.css",
+  "style": "nimbus.css",
+  "scripts": {
+    "start": "npx --yes http-server -p 7321 -c-1"
+  },
+  "files": [
+    "nimbus.css",
+    "nimbus.min.css",
+    "README.md"
+  ],
+  "keywords": [
+    "css",
+    "lightweight",
+    "minimal",
+    "frosted-glass",
+    "gradients",
+    "nimbus",
+    "metallic",
+    "component-library"
+  ],
+  "author": "rheav",
+  "license": "MIT",
+  "homepage": "https://github.com/rheav/nimbus.css",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rheav/nimbus.css.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rheav/nimbus.css/issues"
+  }
+}

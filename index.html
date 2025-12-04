@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nimbus - Demo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="nimbus.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--nc-snow);
+        font-family: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        color: var(--nc-ink);
+      }
+      .demo-header {
+        background: linear-gradient(135deg, var(--nc-frost), var(--nc-ocean));
+        color: white;
+        padding: 3rem 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .demo-header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+      .demo-header p {
+        margin: 0.5rem 0 0;
+        opacity: 0.9;
+        font-size: 1.125rem;
+      }
+      .section {
+        margin-bottom: 3rem;
+      }
+      .section-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--nc-ocean);
+        margin-bottom: 1.5rem;
+      }
+      .section-subtitle {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: var(--nc-ink);
+        margin: 1.5rem 0 1rem;
+      }
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      .flex-demo {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .color-box {
+        text-align: center;
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+      .color-swatch {
+        height: 80px;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .code-block {
+        background: var(--nc-midnight);
+        color: var(--nc-fog);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-family: "Monaco", "Courier New", monospace;
+        font-size: 0.875rem;
+        overflow-x: auto;
+        margin: 1rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-header">
+      <h1>
+        <span style="margin-right: 0.5rem">☁️</span>
+        <span class="nc-text-gradient-animated">nimbus.css</span>
+      </h1>
+      <p>lightweight CSS with Opinionated Defaults</p>
+    </div>
+
+    <div class="nc-container">
+      <!-- Buttons Section -->
+      <section class="section">
+        <h2 class="section-title">Buttons</h2>
+
+        <h3 class="section-subtitle">Variants</h3>
+        <div class="flex-demo">
+          <button class="nc-btn nc-btn-primary">Primary</button>
+          <button class="nc-btn nc-btn-secondary">Secondary</button>
+          <button class="nc-btn nc-btn-success">Success</button>
+          <button class="nc-btn nc-btn-warning">Warning</button>
+          <button class="nc-btn nc-btn-danger">Danger</button>
+          <button class="nc-btn nc-btn-silver">Silver</button>
+          <button class="nc-btn nc-btn-ghost">Ghost</button>
+          <button class="nc-btn nc-btn-outline">Outline</button>
+          <button class="nc-btn nc-btn-outline-fog">Outline Fog</button>
+        </div>
+
+        <h3 class="section-subtitle">Sizes</h3>
+        <div class="flex-demo">
+          <button class="nc-btn nc-btn-primary nc-btn-sm">Small</button>
+          <button class="nc-btn nc-btn-primary">Default</button>
+          <button class="nc-btn nc-btn-primary nc-btn-lg">Large</button>
+        </div>
+
+        <h3 class="section-subtitle">Loading State</h3>
+        <div class="flex-demo">
+          <button class="nc-btn nc-btn-primary nc-btn-loading">Loading</button>
+          <button class="nc-btn nc-btn-success nc-btn-loading">Saving</button>
+          <button class="nc-btn nc-btn-secondary nc-btn-loading">
+            Processing
+          </button>
+        </div>
+
+        <h3 class="section-subtitle">With Border Radius Modifiers</h3>
+        <div class="flex-demo">
+          <button class="nc-btn nc-btn-primary" style="border-radius: 0">
+            No Radius
+          </button>
+          <button class="nc-btn nc-btn-primary nc-rounded-sm">
+            Small Radius
+          </button>
+          <button class="nc-btn nc-btn-primary nc-rounded-lg">
+            Large Radius
+          </button>
+        </div>
+
+        <div class="code-block">
+          &lt;button class="nc-btn nc-btn-primary"&gt;Primary&lt;/button&gt;
+          &lt;button class="nc-btn nc-btn-secondary"&gt;Secondary&lt;/button&gt;
+          &lt;button class="nc-btn nc-btn-primary nc-btn-lg"&gt;Large
+          Button&lt;/button&gt;
+        </div>
+      </section>
+
+      <!-- Cards Section -->
+      <section class="section">
+        <h2 class="section-title">Cards</h2>
+
+        <div class="demo-grid">
+          <div class="nc-card">
+            <h3 style="margin-top: 0; color: var(--nc-ocean)">
+              Frosted Glass Card
+            </h3>
+            <p style="color: var(--nc-pebble)">
+              Beautiful backdrop blur effect with subtle transparency. This is
+              the default card style.
+            </p>
+            <button class="nc-btn nc-btn-primary nc-btn-sm">Learn More</button>
+          </div>
+
+          <div class="nc-card nc-card-solid">
+            <h3 style="margin-top: 0; color: var(--nc-ocean)">Solid Card</h3>
+            <p style="color: var(--nc-pebble)">
+              Traditional solid background with subtle border for a clean look.
+            </p>
+            <button class="nc-btn nc-btn-outline nc-btn-sm">Learn More</button>
+          </div>
+
+          <div class="nc-card nc-card-gradient">
+            <h3 class="nc-card-title nc-text-snow" style="margin-top: 0">
+              Gradient Card
+            </h3>
+            <p class="nc-text-snow">
+              Eye-catching gradient background perfect for featured content.
+            </p>
+            <button class="nc-btn nc-btn-secondary nc-btn-sm">
+              Get Started
+            </button>
+          </div>
+
+          <div class="nc-card-silver">
+            <h3 class="nc-card-title nc-text-snow" style="margin-top: 0">
+              Silver Gradient Card
+            </h3>
+            <p class="nc-text-snow">
+              Beautiful silver-ish gradient with metallic finish effect.
+            </p>
+            <button class="nc-btn nc-btn-outline-fog nc-btn-sm">Explore</button>
+          </div>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="nc-card"&gt; &lt;h3&gt;Card Title&lt;/h3&gt;
+          &lt;p&gt;Card content&lt;/p&gt; &lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Badges Section -->
+      <section class="section">
+        <h2 class="section-title">Badges</h2>
+
+        <div class="flex-demo">
+          <span class="nc-badge nc-badge-primary">Primary</span>
+          <span class="nc-badge nc-badge-secondary">Secondary</span>
+          <span class="nc-badge nc-badge-success">Success</span>
+          <span class="nc-badge nc-badge-warning">Warning</span>
+          <span class="nc-badge nc-badge-danger">Danger</span>
+          <span class="nc-badge nc-badge-silver">Silver</span>
+        </div>
+
+        <h3 class="section-subtitle">With Icons</h3>
+        <div class="flex-demo">
+          <span class="nc-badge nc-badge-success">✓ Verified</span>
+          <span class="nc-badge nc-badge-warning">⚠ Pending</span>
+          <span class="nc-badge nc-badge-danger">✗ Failed</span>
+          <span class="nc-badge nc-badge-primary">🔔 2 New</span>
+        </div>
+
+        <div class="code-block">
+          &lt;span class="nc-badge nc-badge-primary"&gt;Primary&lt;/span&gt;
+          &lt;span class="nc-badge nc-badge-success"&gt;✓ Verified&lt;/span&gt;
+        </div>
+      </section>
+
+      <!-- Chips (Tags) Section -->
+      <section class="section">
+        <h2 class="section-title">Chips (Tags)</h2>
+        <p style="color: var(--nc-pebble); margin-bottom: 1rem">
+          Smaller, thinner components perfect for tags and labels.
+        </p>
+
+        <div class="flex-demo">
+          <span class="nc-chip nc-chip-default">Default</span>
+          <span class="nc-chip nc-chip-primary">Primary</span>
+          <span class="nc-chip nc-chip-secondary">Secondary</span>
+          <span class="nc-chip nc-chip-success">Success</span>
+          <span class="nc-chip nc-chip-warning">Warning</span>
+          <span class="nc-chip nc-chip-danger">Danger</span>
+          <span class="nc-chip nc-chip-silver">Silver</span>
+        </div>
+
+        <h3 class="section-subtitle">Use Cases</h3>
+        <div class="flex-demo">
+          <span class="nc-chip nc-chip-primary">#javascript</span>
+          <span class="nc-chip nc-chip-primary">#css</span>
+          <span class="nc-chip nc-chip-primary">#html</span>
+          <span class="nc-chip nc-chip-success">New</span>
+          <span class="nc-chip nc-chip-warning">Beta</span>
+          <span class="nc-chip nc-chip-default">v1.0.0</span>
+        </div>
+
+        <div class="code-block">
+          &lt;span class="nc-chip nc-chip-primary"&gt;#javascript&lt;/span&gt;
+          &lt;span class="nc-chip nc-chip-success"&gt;New&lt;/span&gt; &lt;span
+          class="nc-chip nc-chip-default"&gt;v1.0.0&lt;/span&gt;
+        </div>
+      </section>
+
+      <!-- Complete Card Example -->
+      <section class="section">
+        <h2 class="section-title">Complete Card Example</h2>
+        <p style="color: var(--nc-pebble); margin-bottom: 1.5rem">
+          A comprehensive card using Nimbus components.
+        </p>
+
+        <div class="nc-card" style="max-width: 400px">
+          <!-- Image placeholder -->
+          <div
+            style="
+              width: 100%;
+              height: 200px;
+              background: linear-gradient(
+                135deg,
+                var(--nc-frost),
+                var(--nc-ocean)
+              );
+              border-radius: 0.5rem;
+              margin-bottom: 1rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-size: 1.5rem;
+            "
+          >
+            🌊 Nimbus
+          </div>
+
+          <!-- Tags/Chips -->
+          <div style="margin-bottom: 0.75rem">
+            <span class="nc-chip nc-chip-primary">Design System</span>
+            <span class="nc-chip nc-chip-success">New</span>
+            <span class="nc-chip nc-chip-default">v1.0</span>
+          </div>
+
+          <!-- Title -->
+          <h3
+            style="
+              margin: 0.75rem 0;
+              color: var(--nc-ocean);
+              font-size: 1.25rem;
+            "
+          >
+            Nimbus Library
+          </h3>
+
+          <!-- Description -->
+          <p
+            style="
+              color: var(--nc-pebble);
+              margin-bottom: 1rem;
+              font-size: 0.875rem;
+              line-height: 1.5;
+            "
+          >
+            A minimal, lightweight CSS library with a modern frosted glass
+            design aesthetic. Perfect for building beautiful interfaces quickly.
+          </p>
+
+          <!-- Meta info -->
+          <div
+            style="
+              display: flex;
+              gap: 1rem;
+              margin-bottom: 1rem;
+              font-size: 0.75rem;
+              color: var(--nc-pebble);
+            "
+          >
+            <span>👤 12 contributors</span>
+            <span>⭐ 234 stars</span>
+          </div>
+
+          <!-- Action buttons -->
+          <div style="display: flex; gap: 0.5rem">
+            <button class="nc-btn nc-btn-primary">Get Started</button>
+            <button class="nc-btn nc-btn-outline">Documentation</button>
+          </div>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="nc-card"&gt; &lt;!-- Image --&gt; &lt;img
+          src="image.jpg" style="width: 100%; height: 200px; object-fit: cover;
+          border-radius: 0.5rem; margin-bottom: 1rem;"&gt; &lt;!-- Tags --&gt;
+          &lt;div style="margin-bottom: 0.75rem;"&gt; &lt;span class="nc-chip
+          nc-chip-primary"&gt;Design System&lt;/span&gt; &lt;span class="nc-chip
+          nc-chip-success"&gt;New&lt;/span&gt; &lt;span class="nc-chip
+          nc-chip-default"&gt;v1.0&lt;/span&gt; &lt;/div&gt; &lt;!-- Title
+          --&gt; &lt;h3 style="color: var(--nc-ocean);"&gt;Nimbus
+          Library&lt;/h3&gt; &lt;!-- Description --&gt; &lt;p style="color:
+          #6b7280;"&gt; A minimal, lightweight CSS library with a modern frosted
+          glass design aesthetic. &lt;/p&gt; &lt;!-- Buttons --&gt; &lt;div
+          style="display: flex; gap: 0.5rem;"&gt; &lt;button class="nc-btn
+          nc-btn-primary"&gt;Get Started&lt;/button&gt; &lt;button class="nc-btn
+          nc-btn-outline"&gt;Documentation&lt;/button&gt; &lt;/div&gt;
+          &lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Tabs Section -->
+      <section class="section">
+        <h2 class="section-title">Tabs</h2>
+
+        <div
+          id="demo-tabs"
+          class="nc-tab-group"
+          style="
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--nc-space-xl);
+          "
+        >
+          <button class="nc-tab-active nc-tab-first">For Teams</button>
+          <button class="nc-tab-inactive nc-tab-middle">For Managers</button>
+          <button class="nc-tab-inactive nc-tab-last">For Executives</button>
+        </div>
+
+        <div class="code-block">
+          &lt;button class="nc-tab-active"&gt;Active&lt;/button&gt; &lt;button
+          class="nc-tab-inactive"&gt;Inactive&lt;/button&gt;
+        </div>
+      </section>
+
+      <!-- Forms Section -->
+      <section class="section">
+        <h2 class="section-title">Form Elements</h2>
+
+        <div class="nc-card" style="max-width: 600px">
+          <div class="nc-input-group">
+            <label class="nc-input-label">Email Address</label>
+            <input
+              type="email"
+              class="nc-input"
+              placeholder="you@example.com"
+            />
+          </div>
+
+          <div class="nc-input-group">
+            <label class="nc-input-label" for="demo-select"
+              >Select Option</label
+            >
+            <select
+              class="nc-select"
+              id="demo-select"
+              aria-label="Select an option"
+            >
+              <option>Choose one...</option>
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+            </select>
+          </div>
+
+          <div class="nc-input-group">
+            <label class="nc-input-label">Message</label>
+            <textarea
+              class="nc-input nc-textarea"
+              placeholder="Enter your message..."
+            ></textarea>
+          </div>
+
+          <button class="nc-btn nc-btn-primary">Submit Form</button>
+        </div>
+
+        <h3 class="section-subtitle">Input States</h3>
+        <div class="demo-grid">
+          <div class="nc-input-group nc-input-error">
+            <label class="nc-input-label">Email (Error)</label>
+            <input type="email" class="nc-input" value="invalid-email" />
+            <span class="nc-input-hint"
+              >Please enter a valid email address</span
+            >
+          </div>
+
+          <div class="nc-input-group nc-input-success">
+            <label class="nc-input-label">Username (Success)</label>
+            <input type="text" class="nc-input" value="johndoe" />
+            <span class="nc-input-hint">Username is available!</span>
+          </div>
+        </div>
+
+        <h3 class="section-subtitle">Switch / Toggle</h3>
+        <div class="flex-demo">
+          <label class="nc-switch">
+            <input type="checkbox" checked />
+            <span class="nc-switch-track">
+              <span class="nc-switch-thumb"></span>
+            </span>
+            <span class="nc-switch-label">Enable notifications</span>
+          </label>
+
+          <label class="nc-switch">
+            <input type="checkbox" />
+            <span class="nc-switch-track">
+              <span class="nc-switch-thumb"></span>
+            </span>
+            <span class="nc-switch-label">Dark mode</span>
+          </label>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="nc-input-group"&gt; &lt;label
+          class="nc-input-label"&gt;Email&lt;/label&gt; &lt;input type="email"
+          class="nc-input" placeholder="you@example.com"&gt; &lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Alerts Section -->
+      <section class="section">
+        <h2 class="section-title">Alerts</h2>
+
+        <div class="nc-alert nc-alert-info">
+          <div class="nc-alert-title">💡 Information</div>
+          This is an informational message with frosted glass effect.
+        </div>
+
+        <div class="nc-alert nc-alert-success">
+          <div class="nc-alert-title">✓ Success!</div>
+          Your changes have been saved successfully.
+        </div>
+
+        <div class="nc-alert nc-alert-warning">
+          <div class="nc-alert-title">⚠ Warning</div>
+          Please review this information carefully before proceeding.
+        </div>
+
+        <div class="nc-alert nc-alert-danger">
+          <div class="nc-alert-title">✗ Error</div>
+          Something went wrong. Please try again later.
+        </div>
+
+        <div class="nc-alert nc-alert-silver">
+          <div class="nc-alert-title">✨ Silver Alert</div>
+          Beautiful gradient alert with silver-ish finish that transitions from
+          light to dark blue.
+        </div>
+
+        <div class="code-block">
+          &lt;div class="nc-alert nc-alert-success"&gt; &lt;div
+          class="nc-alert-title"&gt;✓ Success!&lt;/div&gt; Your changes have
+          been saved. &lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Tip Box Section -->
+      <section class="section">
+        <h2 class="section-title">Tip Boxes</h2>
+        <p style="color: var(--nc-pebble); margin-bottom: 1rem">
+          Modern shiny tip boxes with gradient backgrounds and colored shadows.
+        </p>
+
+        <div class="nc-tip" style="margin-bottom: 1rem">
+          💡 <strong>Pro Tip:</strong> A detected pixel doesn't necessarily
+          indicate a duplicate! Example: <strong>Google Ads</strong> can split
+          between <em>conversion</em> and <em>remarketing</em>.
+        </div>
+
+        <div class="nc-tip nc-tip-ocean" style="margin-bottom: 1rem">
+          🌊 <strong>Ocean Variant:</strong> This tip box uses the ocean
+          gradient for important information.
+        </div>
+
+        <div class="nc-tip nc-tip-emerald" style="margin-bottom: 1rem">
+          ✓ <strong>Success Tip:</strong> Your implementation is working
+          correctly! All systems operational.
+        </div>
+
+        <div class="code-block">
+          &lt;div class="nc-tip"&gt; 💡 &lt;strong&gt;Pro Tip:&lt;/strong&gt;
+          Your message here... &lt;/div&gt; &lt;div class="nc-tip
+          nc-tip-ocean"&gt;...&lt;/div&gt; &lt;div class="nc-tip
+          nc-tip-emerald"&gt;...&lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Table Section -->
+      <section class="section">
+        <h2 class="section-title">Table</h2>
+
+        <div class="nc-table-wrapper">
+          <table class="nc-table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Status</th>
+                <th>Users</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 0.5rem">
+                    <span>📊</span>
+                    <span>Analytics</span>
+                  </div>
+                </td>
+                <td>
+                  <span class="nc-status nc-status-online">
+                    <span class="nc-status-dot"></span>
+                    <span style="color: #10b981">Online</span>
+                  </span>
+                </td>
+                <td>2,543</td>
+                <td>
+                  <button class="nc-btn nc-btn-ghost nc-btn-sm">View</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 0.5rem">
+                    <span>📱</span>
+                    <span>Mobile App</span>
+                  </div>
+                </td>
+                <td>
+                  <span class="nc-status nc-status-warning">
+                    <span class="nc-status-dot"></span>
+                    <span style="color: #92400e">Warning</span>
+                  </span>
+                </td>
+                <td>1,234</td>
+                <td>
+                  <button class="nc-btn nc-btn-ghost nc-btn-sm">View</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 0.5rem">
+                    <span>🔒</span>
+                    <span>Security</span>
+                  </div>
+                </td>
+                <td>
+                  <span class="nc-status nc-status-offline">
+                    <span class="nc-status-dot"></span>
+                    <span style="color: var(--nc-pebble)">Offline</span>
+                  </span>
+                </td>
+                <td>0</td>
+                <td>
+                  <button class="nc-btn nc-btn-ghost nc-btn-sm">Setup</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="nc-table-wrapper"&gt; &lt;table class="nc-table"&gt;
+          &lt;thead&gt;...&lt;/thead&gt; &lt;tbody&gt;...&lt;/tbody&gt;
+          &lt;/table&gt; &lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Color Palette -->
+      <section class="section">
+        <h2 class="section-title">Color Palette</h2>
+
+        <div class="nc-color-grid">
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-frost)"
+            ></div>
+            <strong>Frost</strong>
+            <code>#a0d2eb</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-fog)"
+            ></div>
+            <strong>Fog</strong>
+            <code>#e5eaf5</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-ocean)"
+            ></div>
+            <strong>Ocean</strong>
+            <code>#0077b6</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-sky)"
+            ></div>
+            <strong>Sky</strong>
+            <code>#caf0f8</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-sapphire)"
+            ></div>
+            <strong>Sapphire</strong>
+            <code>#0284c7</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-emerald)"
+            ></div>
+            <strong>Emerald</strong>
+            <code>#10b981</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-forest)"
+            ></div>
+            <strong>Forest</strong>
+            <code>#065f46</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-sandy)"
+            ></div>
+            <strong>Sandy</strong>
+            <code>#fbbf24</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-danger)"
+            ></div>
+            <strong>Danger</strong>
+            <code>#dc626b</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-pebble)"
+            ></div>
+            <strong>Pebble</strong>
+            <code>#6b7280</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-ink)"
+            ></div>
+            <strong>Ink</strong>
+            <code>#1e293b</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-midnight)"
+            ></div>
+            <strong>Midnight</strong>
+            <code>#0f172a</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-snow)"
+            ></div>
+            <strong>Snow</strong>
+            <code>#f8fafc</code>
+          </div>
+          <div class="nc-color-box">
+            <div
+              class="nc-color-swatch"
+              style="background: var(--nc-ash)"
+            ></div>
+            <strong>Ash</strong>
+            <code>#f1f5f9</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Avatar Section -->
+      <section class="section">
+        <h2 class="section-title">Avatar</h2>
+
+        <h3 class="section-subtitle">Sizes</h3>
+        <div class="flex-demo">
+          <span class="nc-avatar nc-avatar-xs">XS</span>
+          <span class="nc-avatar nc-avatar-sm">SM</span>
+          <span class="nc-avatar">MD</span>
+          <span class="nc-avatar nc-avatar-lg">LG</span>
+          <span class="nc-avatar nc-avatar-xl">XL</span>
+        </div>
+
+        <h3 class="section-subtitle">With Images</h3>
+        <div class="flex-demo">
+          <span class="nc-avatar">
+            <img
+              src="https://plus.unsplash.com/premium_photo-1673139281873-e65b668ca6b8?q=90&w=200"
+              alt="User"
+            />
+          </span>
+          <span class="nc-avatar">
+            <img
+              src="https://images.unsplash.com/photo-1592325250692-523b02814f93?q=90&w=200"
+              alt="User"
+            />
+          </span>
+          <span class="nc-avatar">
+            <img
+              src="https://images.unsplash.com/photo-1609882020088-cec5566ff233?q=90&w=200"
+              alt="User"
+            />
+          </span>
+        </div>
+
+        <h3 class="section-subtitle">With Status</h3>
+        <div class="flex-demo">
+          <span class="nc-avatar-wrapper">
+            <span class="nc-avatar">JD</span>
+            <span class="nc-avatar-status nc-avatar-status-online"></span>
+          </span>
+          <span class="nc-avatar-wrapper">
+            <span class="nc-avatar">AB</span>
+            <span class="nc-avatar-status nc-avatar-status-busy"></span>
+          </span>
+          <span class="nc-avatar-wrapper">
+            <span class="nc-avatar">CD</span>
+            <span class="nc-avatar-status nc-avatar-status-away"></span>
+          </span>
+        </div>
+
+        <h3 class="section-subtitle">Avatar Group</h3>
+        <div class="nc-avatar-group">
+          <span class="nc-avatar">
+            <img
+              src="https://plus.unsplash.com/premium_photo-1673138835852-12eb32d97d3d?q=90&w=200"
+              alt="User"
+            />
+          </span>
+          <span class="nc-avatar">
+            <img
+              src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=90&w=200"
+              alt="User"
+            />
+          </span>
+          <span class="nc-avatar">
+            <img
+              src="https://plus.unsplash.com/premium_photo-1673138824696-95d2f852b9bc?q=90&w=200"
+              alt="User"
+            />
+          </span>
+          <span class="nc-avatar">+3</span>
+        </div>
+
+        <div class="code-block">
+          &lt;span class="nc-avatar"&gt;JD&lt;/span&gt; &lt;span
+          class="nc-avatar"&gt;&lt;img src="..." /&gt;&lt;/span&gt;
+        </div>
+      </section>
+
+      <!-- Skeleton Section -->
+      <section class="section">
+        <h2 class="section-title">Skeleton / Loading</h2>
+        <p style="color: var(--nc-pebble); margin-bottom: 1rem">
+          Placeholder content while loading data.
+        </p>
+
+        <div class="demo-grid">
+          <div class="nc-skeleton-card">
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem">
+              <div class="nc-skeleton nc-skeleton-avatar"></div>
+              <div style="flex: 1">
+                <div
+                  class="nc-skeleton nc-skeleton-text"
+                  style="width: 50%"
+                ></div>
+                <div
+                  class="nc-skeleton nc-skeleton-text"
+                  style="width: 30%"
+                ></div>
+              </div>
+            </div>
+            <div
+              class="nc-skeleton nc-skeleton-image"
+              style="height: 8rem; margin-bottom: 1rem"
+            ></div>
+            <div class="nc-skeleton nc-skeleton-text"></div>
+            <div class="nc-skeleton nc-skeleton-text"></div>
+            <div class="nc-skeleton nc-skeleton-text" style="width: 70%"></div>
+          </div>
+
+          <div class="nc-skeleton-card">
+            <div class="nc-skeleton nc-skeleton-heading"></div>
+            <div class="nc-skeleton nc-skeleton-text"></div>
+            <div class="nc-skeleton nc-skeleton-text"></div>
+            <div class="nc-skeleton nc-skeleton-text"></div>
+            <div style="display: flex; gap: 0.5rem; margin-top: 1rem">
+              <div class="nc-skeleton nc-skeleton-button"></div>
+              <div class="nc-skeleton nc-skeleton-button"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="nc-skeleton nc-skeleton-text"&gt;&lt;/div&gt; &lt;div
+          class="nc-skeleton nc-skeleton-avatar"&gt;&lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Toast Section -->
+      <section class="section">
+        <h2 class="section-title">Toast / Notifications</h2>
+        <p style="color: var(--nc-pebble); margin-bottom: 1rem">
+          Click buttons to show toast notifications.
+        </p>
+
+        <div class="flex-demo">
+          <button class="nc-btn nc-btn-success" onclick="showToast('success')">
+            Success Toast
+          </button>
+          <button class="nc-btn nc-btn-danger" onclick="showToast('error')">
+            Error Toast
+          </button>
+          <button class="nc-btn nc-btn-warning" onclick="showToast('warning')">
+            Warning Toast
+          </button>
+          <button class="nc-btn nc-btn-primary" onclick="showToast('info')">
+            Info Toast
+          </button>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="nc-toast nc-toast-success"&gt; &lt;span
+          class="nc-toast-icon"&gt;✓&lt;/span&gt; &lt;div
+          class="nc-toast-content"&gt; &lt;div
+          class="nc-toast-title"&gt;Success&lt;/div&gt; &lt;div
+          class="nc-toast-message"&gt;Message here&lt;/div&gt; &lt;/div&gt;
+          &lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Dialog Section -->
+      <section class="section">
+        <h2 class="section-title">Dialog / Modal</h2>
+        <p style="color: var(--nc-pebble); margin-bottom: 1rem">
+          Click the button to open a dialog. Toggle with
+          <code>nc-dialog-open</code> class.
+        </p>
+
+        <button class="nc-btn nc-btn-primary" id="open-dialog">
+          Open Dialog
+        </button>
+
+        <div class="code-block">
+          &lt;div class="nc-dialog-overlay nc-dialog-open"&gt; &lt;div
+          class="nc-dialog"&gt; &lt;div
+          class="nc-dialog-header"&gt;...&lt;/div&gt; &lt;div
+          class="nc-dialog-body"&gt;...&lt;/div&gt; &lt;div
+          class="nc-dialog-footer"&gt;...&lt;/div&gt; &lt;/div&gt; &lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Background Gradients Section -->
+      <section class="section">
+        <h2 class="section-title">Background Gradients</h2>
+        <p style="color: var(--nc-pebble); margin-bottom: 1rem">
+          Apply gradient backgrounds to any element with these utility classes.
+        </p>
+
+        <div class="demo-grid" style="gap: 1rem">
+          <div
+            class="nc-bg-silver nc-radius-lg"
+            style="padding: 2rem; color: white"
+          >
+            <h4 style="margin: 0 0 0.5rem">nc-bg-silver</h4>
+            <p style="margin: 0; opacity: 0.9">Metallic blue-silver gradient</p>
+          </div>
+          <div
+            class="nc-bg-ocean nc-radius-lg"
+            style="padding: 2rem; color: white"
+          >
+            <h4 style="margin: 0 0 0.5rem">nc-bg-ocean</h4>
+            <p style="margin: 0; opacity: 0.9">Frost to ocean gradient</p>
+          </div>
+          <div class="nc-bg-frost nc-radius-lg" style="padding: 2rem">
+            <h4 style="margin: 0 0 0.5rem">nc-bg-frost</h4>
+            <p style="margin: 0; color: var(--nc-pebble)">
+              Frosted glass effect
+            </p>
+          </div>
+          <div class="nc-bg-midnight nc-radius-lg" style="padding: 2rem">
+            <h4 style="margin: 0 0 0.5rem">nc-bg-midnight</h4>
+            <p style="margin: 0; opacity: 0.8">Dark gradient</p>
+          </div>
+          <div class="nc-bg-success nc-radius-lg" style="padding: 2rem">
+            <h4 style="margin: 0 0 0.5rem">nc-bg-success</h4>
+            <p style="margin: 0; opacity: 0.9">Green gradient</p>
+          </div>
+          <div class="nc-bg-danger nc-radius-lg" style="padding: 2rem">
+            <h4 style="margin: 0 0 0.5rem">nc-bg-danger</h4>
+            <p style="margin: 0; opacity: 0.9">Red gradient</p>
+          </div>
+          <div class="nc-bg-warning nc-radius-lg" style="padding: 2rem">
+            <h4 style="margin: 0 0 0.5rem">nc-bg-warning</h4>
+            <p style="margin: 0; opacity: 0.9">Amber gradient</p>
+          </div>
+          <div class="nc-bg-sky nc-radius-lg" style="padding: 2rem">
+            <h4 style="margin: 0 0 0.5rem">nc-bg-sky</h4>
+            <p style="margin: 0; color: var(--nc-pebble)">
+              Sky gradient for heroes
+            </p>
+          </div>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="nc-bg-silver nc-radius-lg"&gt;Silver
+          section&lt;/div&gt; &lt;section class="nc-bg-ocean"&gt;Ocean
+          section&lt;/section&gt;
+        </div>
+      </section>
+
+      <!-- Text Effects Section -->
+      <section class="section">
+        <h2 class="section-title">Text Effects</h2>
+        <p style="color: var(--nc-pebble); margin-bottom: 1.5rem">
+          Gradient text, glows, highlights, and animated effects.
+        </p>
+
+        <h3 class="section-subtitle">Gradient Text</h3>
+        <div style="margin-bottom: 1.5rem">
+          <p style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem">
+            <span class="nc-text-gradient">Frost to Ocean Gradient</span>
+          </p>
+          <p style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem">
+            <span class="nc-text-gradient-ocean">Ocean to Sapphire</span>
+          </p>
+          <p style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem">
+            <span class="nc-text-gradient-emerald">Emerald Gradient</span>
+          </p>
+          <p style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem">
+            <span class="nc-text-gradient-sunset">Sunset Gradient</span>
+          </p>
+          <p style="font-size: 1.5rem; font-weight: 600">
+            <span class="nc-text-gradient-animated">Animated Gradient</span>
+          </p>
+        </div>
+
+        <h3 class="section-subtitle">Highlighted Text</h3>
+        <div style="margin-bottom: 1.5rem">
+          <p style="margin-bottom: 0.5rem">
+            Use <span class="nc-text-highlight">frost highlight</span> for
+            emphasis.
+          </p>
+          <p style="margin-bottom: 0.5rem">
+            Use <span class="nc-text-highlight-ocean">ocean highlight</span> for
+            emphasis.
+          </p>
+          <p>
+            Use
+            <span class="nc-text-highlight-emerald">emerald highlight</span> for
+            emphasis.
+          </p>
+        </div>
+
+        <h3 class="section-subtitle">Text Glow</h3>
+        <div
+          class="nc-bg-midnight nc-radius-lg"
+          style="padding: 1.5rem; margin-bottom: 1rem"
+        >
+          <p
+            style="
+              font-size: 1.25rem;
+              font-weight: 600;
+              color: var(--nc-frost);
+              margin-bottom: 0.5rem;
+            "
+          >
+            <span class="nc-text-glow">Frost Glow Effect</span>
+          </p>
+          <p
+            style="font-size: 1.25rem; font-weight: 600; color: var(--nc-ocean)"
+          >
+            <span class="nc-text-glow-ocean">Ocean Glow Effect</span>
+          </p>
+        </div>
+
+        <div class="code-block">
+          &lt;span class="nc-text-gradient"&gt;Gradient Text&lt;/span&gt;
+          &lt;span class="nc-text-highlight"&gt;Highlighted&lt;/span&gt;
+          &lt;span class="nc-text-glow"&gt;Glow Effect&lt;/span&gt;
+        </div>
+      </section>
+
+      <!-- Skeleton Loaders Section -->
+      <section class="section">
+        <h2 class="section-title">Skeleton Loaders</h2>
+        <p style="color: var(--nc-pebble); margin-bottom: 1.5rem">
+          Loading placeholders for content.
+        </p>
+
+        <div class="demo-grid">
+          <div class="nc-card" style="padding: 1.5rem">
+            <div class="nc-flex nc-gap-md nc-mb-md">
+              <div class="nc-skeleton nc-skeleton-avatar"></div>
+              <div class="nc-flex-1">
+                <div class="nc-skeleton nc-skeleton-text nc-w-half"></div>
+                <div
+                  class="nc-skeleton nc-skeleton-text"
+                  style="width: 40%"
+                ></div>
+              </div>
+            </div>
+            <div class="nc-skeleton nc-skeleton-image nc-mb-md"></div>
+            <div class="nc-skeleton nc-skeleton-text"></div>
+            <div class="nc-skeleton nc-skeleton-text" style="width: 80%"></div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="nc-skeleton nc-skeleton-avatar"&gt;&lt;/div&gt; &lt;div
+          class="nc-skeleton nc-skeleton-text"&gt;&lt;/div&gt; &lt;div
+          class="nc-skeleton nc-skeleton-image"&gt;&lt;/div&gt;
+        </div>
+      </section>
+
+      <!-- Alerts & Tips Section -->
+      <section class="section">
+        <h2 class="section-title">Alerts & Tips</h2>
+
+        <h3 class="section-subtitle">Alerts</h3>
+        <div style="max-width: 600px; margin-bottom: 1.5rem">
+          <div class="nc-alert nc-alert-info">
+            <div class="nc-alert-title">ℹ️ Information</div>
+            This is an informational message.
+          </div>
+          <div class="nc-alert nc-alert-success">
+            <div class="nc-alert-title">✓ Success</div>
+            Operation completed successfully.
+          </div>
+          <div class="nc-alert nc-alert-warning">
+            <div class="nc-alert-title">⚠️ Warning</div>
+            Please review before proceeding.
+          </div>
+          <div class="nc-alert nc-alert-danger">
+            <div class="nc-alert-title">✗ Error</div>
+            Something went wrong, please try again.
+          </div>
+        </div>
+
+        <h3 class="section-subtitle">Tip Boxes</h3>
+        <div style="max-width: 600px">
+          <div class="nc-tip" style="margin-bottom: 1rem">
+            💡 <strong>Pro Tip:</strong> This is a standard tip box.
+          </div>
+          <div class="nc-tip nc-tip-ocean" style="margin-bottom: 1rem">
+            🌊 <strong>Ocean Variant:</strong> Uses the ocean gradient.
+          </div>
+          <div class="nc-tip nc-tip-emerald">
+            ✓ <strong>Success Tip:</strong> Great for positive reinforcement.
+          </div>
+        </div>
+
+        <div class="code-block">
+          &lt;div class="nc-alert nc-alert-success"&gt;...&lt;/div&gt; &lt;div
+          class="nc-tip nc-tip-ocean"&gt;...&lt;/div&gt;
+        </div>
+      </section>
+    </div>
+
+    <!-- Toast Container -->
+    <div
+      class="nc-toast-container nc-toast-container-top-right"
+      id="toast-container"
+    ></div>
+
+    <!-- Dialog Demo -->
+    <div class="nc-dialog-overlay" id="demo-dialog">
+      <div class="nc-dialog">
+        <div class="nc-dialog-header">
+          <h3 class="nc-dialog-title">Confirm Action</h3>
+          <button class="nc-dialog-close" id="close-dialog">&times;</button>
+        </div>
+        <div class="nc-dialog-body">
+          <p>
+            Are you sure you want to proceed with this action? This cannot be
+            undone.
+          </p>
+        </div>
+        <div class="nc-dialog-footer">
+          <button class="nc-btn nc-btn-secondary" id="cancel-dialog">
+            Cancel
+          </button>
+          <button class="nc-btn nc-btn-primary">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Tab functionality
+      document.querySelectorAll(".nc-tab").forEach((tab) => {
+        tab.addEventListener("click", function () {
+          document
+            .querySelectorAll(".nc-tab")
+            .forEach((t) => t.classList.remove("active"));
+          this.classList.add("active");
+        });
+      });
+
+      // Dialog functionality
+      const dialog = document.getElementById("demo-dialog");
+      const openBtn = document.getElementById("open-dialog");
+      const closeBtn = document.getElementById("close-dialog");
+      const cancelBtn = document.getElementById("cancel-dialog");
+
+      openBtn.addEventListener("click", () => {
+        dialog.classList.add("nc-dialog-open");
+      });
+
+      [closeBtn, cancelBtn].forEach((btn) => {
+        btn.addEventListener("click", () => {
+          dialog.classList.remove("nc-dialog-open");
+        });
+      });
+
+      dialog.addEventListener("click", (e) => {
+        if (e.target === dialog) {
+          dialog.classList.remove("nc-dialog-open");
+        }
+      });
+
+      // Toast functionality
+      const toastContainer = document.getElementById("toast-container");
+      const toastConfig = {
+        success: {
+          icon: "✓",
+          title: "Success!",
+          message: "Your action was completed successfully.",
+        },
+        error: {
+          icon: "✗",
+          title: "Error",
+          message: "Something went wrong. Please try again.",
+        },
+        warning: {
+          icon: "⚠",
+          title: "Warning",
+          message: "Please review this before continuing.",
+        },
+        info: {
+          icon: "ℹ",
+          title: "Information",
+          message: "Here's something you should know.",
+        },
+      };
+
+      function showToast(type) {
+        const config = toastConfig[type];
+        const toast = document.createElement("div");
+        toast.className = `nc-toast nc-toast-${type}`;
+        toast.innerHTML = `
+          <span class="nc-toast-icon">${config.icon}</span>
+          <div class="nc-toast-content">
+            <div class="nc-toast-title">${config.title}</div>
+            <div class="nc-toast-message">${config.message}</div>
+          </div>
+          <button class="nc-toast-close" onclick="closeToast(this)">&times;</button>
+        `;
+        toastContainer.appendChild(toast);
+
+        // Auto remove after 4 seconds
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.classList.add("nc-toast-out");
+            setTimeout(() => toast.remove(), 200);
+          }
+        }, 4000);
+      }
+
+      function closeToast(btn) {
+        const toast = btn.closest(".nc-toast");
+        toast.classList.add("nc-toast-out");
+        setTimeout(() => toast.remove(), 200);
+      }
+
+      // Tab functionality
+      const tabContainer = document.getElementById("demo-tabs");
+      if (tabContainer) {
+        const tabs = tabContainer.querySelectorAll("button");
+        tabs.forEach((tab, index) => {
+          tab.addEventListener("click", () => {
+            tabs.forEach((t, i) => {
+              const posClass =
+                i === 0
+                  ? "nc-tab-first"
+                  : i === tabs.length - 1
+                  ? "nc-tab-last"
+                  : "nc-tab-middle";
+              t.className = `nc-tab-inactive ${posClass}`;
+            });
+            const posClass =
+              index === 0
+                ? "nc-tab-first"
+                : index === tabs.length - 1
+                ? "nc-tab-last"
+                : "nc-tab-middle";
+            tab.className = `nc-tab-active ${posClass}`;
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

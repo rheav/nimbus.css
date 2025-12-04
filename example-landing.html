@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CloudFlow - Project Management Made Simple</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="nimbus.css" />
+    <style>
+      /* Page-specific layout styles */
+      .hero {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: var(--nc-space-2xl);
+        background: linear-gradient(
+          180deg,
+          #ffffff 0%,
+          rgba(229, 234, 245, 0.5) 60%,
+          var(--nc-fog) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(160, 210, 235, 0.08) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: var(--nc-space-lg);
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        color: var(--nc-pebble);
+        margin-bottom: var(--nc-space-xl);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: var(--nc-space-md);
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: var(--nc-space-md) var(--nc-space-xl);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.7);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--nc-border-primary);
+      }
+
+      .nav-brand {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--nc-ocean);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: var(--nc-space-lg);
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--nc-ink);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--nc-ocean);
+      }
+
+      .section {
+        padding: var(--nc-space-2xl) var(--nc-space-xl);
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto var(--nc-space-2xl);
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+        margin-bottom: var(--nc-space-md);
+      }
+
+      .section-header p {
+        color: var(--nc-pebble);
+        font-size: 1.125rem;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--nc-space-xl);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .feature-card {
+        text-align: center;
+        padding: var(--nc-space-xl);
+      }
+
+      .feature-icon {
+        width: 4rem;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        background: linear-gradient(135deg, #7abcff, rgba(0, 78, 147, 0.5));
+        border-radius: 1rem;
+        margin: 0 auto var(--nc-space-lg);
+        position: relative;
+        box-shadow: 0 10px 15px -3px rgba(122, 188, 255, 0.4);
+      }
+
+      .feature-icon::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.3),
+          transparent 50%
+        );
+        border-radius: inherit;
+        pointer-events: none;
+      }
+
+      .feature-card h3 {
+        margin-bottom: var(--nc-space-sm);
+      }
+
+      .feature-card p {
+        color: var(--nc-pebble);
+        margin: 0;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--nc-space-lg);
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .pricing-card {
+        text-align: center;
+        padding: var(--nc-space-xl);
+        position: relative;
+      }
+
+      .pricing-card.featured {
+        border: 2px solid var(--nc-ocean);
+        transform: scale(1.05);
+      }
+
+      .pricing-card.featured::before {
+        content: "Most Popular";
+        position: absolute;
+        top: -0.75rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--nc-ocean);
+        color: white;
+        padding: 0.25rem 1rem;
+        border-radius: var(--nc-radius-sm);
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .pricing-price {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--nc-midnight);
+        margin: var(--nc-space-lg) 0;
+      }
+
+      .pricing-price span {
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--nc-pebble);
+      }
+
+      .pricing-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 var(--nc-space-xl);
+        text-align: left;
+      }
+
+      .pricing-features li {
+        padding: var(--nc-space-sm) 0;
+        border-bottom: 1px solid var(--nc-border-primary);
+        color: var(--nc-ink);
+      }
+
+      .pricing-features li::before {
+        content: "✓";
+        color: var(--nc-emerald);
+        margin-right: var(--nc-space-sm);
+        font-weight: 600;
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--nc-space-lg);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .testimonial-card {
+        padding: var(--nc-space-xl);
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        color: var(--nc-ink);
+        margin-bottom: var(--nc-space-lg);
+        line-height: 1.8;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: var(--nc-space-md);
+      }
+
+      .testimonial-author-info h4 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .testimonial-author-info p {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--nc-pebble);
+      }
+
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          rgba(241, 245, 249, 0.95),
+          rgba(160, 210, 235, 0.25)
+        );
+        color: var(--nc-ink);
+        text-align: center;
+        padding: var(--nc-space-2xl);
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid var(--nc-border-primary);
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background: radial-gradient(
+          circle at top right,
+          rgba(255, 255, 255, 0.9),
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+
+      .cta-section h2 {
+        color: var(--nc-midnight);
+        margin-bottom: var(--nc-space-md);
+        position: relative;
+        z-index: 1;
+      }
+
+      .cta-section p {
+        color: var(--nc-pebble);
+        margin-bottom: var(--nc-space-xl);
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer {
+        background: var(--nc-midnight);
+        color: var(--nc-fog);
+        padding: var(--nc-space-2xl) var(--nc-space-xl);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--nc-space-xl);
+        max-width: 1200px;
+        margin: 0 auto var(--nc-space-xl);
+      }
+
+      .footer h4 {
+        color: white;
+        margin-bottom: var(--nc-space-md);
+      }
+
+      .footer ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer li {
+        margin-bottom: var(--nc-space-sm);
+      }
+
+      .footer a {
+        color: var(--nc-pebble);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer a:hover {
+        color: var(--nc-frost);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: var(--nc-space-xl);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--nc-pebble);
+        font-size: 0.875rem;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--nc-space-xl);
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .stat-item h3 {
+        font-size: 2.5rem;
+        color: white;
+        margin-bottom: var(--nc-space-xs);
+      }
+
+      .stat-item p {
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .pricing-card.featured {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <a href="#" class="nav-brand">☁️ CloudFlow</a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Testimonials</a>
+        <button class="nc-btn nc-btn-secondary nc-btn-sm">Log In</button>
+        <button class="nc-btn nc-btn-primary nc-btn-sm">Get Started</button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <span class="nc-badge nc-badge-primary" style="margin-bottom: 1rem">
+          ✨ Now with AI-powered insights
+        </span>
+        <h1 class="nc-text-gradient-animated">Manage Projects with Clarity</h1>
+        <p>
+          CloudFlow brings your team together with intuitive project management,
+          real-time collaboration, and powerful analytics. Start free today.
+        </p>
+        <div class="hero-buttons">
+          <button class="nc-btn nc-btn-silver nc-btn-lg">
+            Start Free Trial
+          </button>
+          <button class="nc-btn nc-btn-outline nc-btn-lg">Watch Demo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section
+      class="nc-bg-silver"
+      style="padding: var(--nc-space-2xl) var(--nc-space-xl)"
+    >
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>10K+</h3>
+          <p>Active Teams</p>
+        </div>
+        <div class="stat-item">
+          <h3>2M+</h3>
+          <p>Tasks Completed</p>
+        </div>
+        <div class="stat-item">
+          <h3>99.9%</h3>
+          <p>Uptime</p>
+        </div>
+        <div class="stat-item">
+          <h3>4.9★</h3>
+          <p>User Rating</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+      <div class="section-header">
+        <h2 class="nc-text-gradient">Everything You Need</h2>
+        <p>
+          Powerful features to help your team
+          <span class="nc-text-highlight">stay organized</span> and deliver
+          projects on time.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="nc-card feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Real-time Dashboard</h3>
+          <p>
+            Get instant visibility into project progress with live updates and
+            customizable views.
+          </p>
+        </div>
+
+        <div class="nc-card feature-card">
+          <div class="feature-icon">👥</div>
+          <h3>Team Collaboration</h3>
+          <p>
+            Work together seamlessly with comments, mentions, and file sharing
+            built right in.
+          </p>
+        </div>
+
+        <div class="nc-card feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Automation</h3>
+          <p>
+            Save time with powerful automation rules that handle repetitive
+            tasks for you.
+          </p>
+        </div>
+
+        <div class="nc-card feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Mobile Ready</h3>
+          <p>
+            Stay connected on the go with our fully-featured mobile apps for iOS
+            and Android.
+          </p>
+        </div>
+
+        <div class="nc-card feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Enterprise Security</h3>
+          <p>
+            Bank-level encryption and compliance certifications keep your data
+            safe.
+          </p>
+        </div>
+
+        <div class="nc-card feature-card">
+          <div class="feature-icon">🔗</div>
+          <h3>Integrations</h3>
+          <p>
+            Connect with 100+ tools you already use, from Slack to GitHub to
+            Figma.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section
+      class="nc-gradient-bg"
+      style="padding: var(--nc-space-2xl) var(--nc-space-xl)"
+    >
+      <div style="max-width: 1000px; margin: 0 auto">
+        <div class="section-header">
+          <h2
+            class="nc-title-gradient"
+            style="font-size: 2.5rem; font-weight: 600"
+          >
+            How It Works
+          </h2>
+          <p class="nc-text-pebble">
+            Get started in minutes with our simple workflow
+          </p>
+        </div>
+
+        <!-- Tabs Demo -->
+        <div
+          id="workflow-tabs"
+          class="nc-tab-group"
+          style="
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--nc-space-xl);
+          "
+        >
+          <button class="nc-tab-active nc-tab-first">For Teams</button>
+          <button class="nc-tab-inactive nc-tab-middle">For Managers</button>
+          <button class="nc-tab-inactive nc-tab-last">For Executives</button>
+        </div>
+
+        <!-- Glass Card with List Items -->
+        <div class="nc-glass-card" style="padding: var(--nc-space-xl)">
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: var(--nc-space-lg);
+            "
+          >
+            <div>
+              <h4
+                class="nc-text-ocean"
+                style="margin-bottom: var(--nc-space-md)"
+              >
+                📋 Step 1: Create Project
+              </h4>
+              <div class="nc-list-item">
+                <span class="nc-text-ink"
+                  >Define project goals and milestones</span
+                >
+              </div>
+              <div class="nc-list-item">
+                <span class="nc-text-ink">Set up team permissions</span>
+              </div>
+              <div class="nc-list-item-subtle">
+                <span class="nc-text-pebble">Import from existing tools</span>
+              </div>
+            </div>
+            <div>
+              <h4
+                class="nc-text-ocean"
+                style="margin-bottom: var(--nc-space-md)"
+              >
+                👥 Step 2: Invite Team
+              </h4>
+              <div class="nc-list-item">
+                <span class="nc-text-ink">Add team members via email</span>
+              </div>
+              <div class="nc-list-item">
+                <span class="nc-text-ink"
+                  >Assign roles and responsibilities</span
+                >
+              </div>
+              <div class="nc-list-item-subtle">
+                <span class="nc-text-pebble">Connect with Slack/Teams</span>
+              </div>
+            </div>
+            <div>
+              <h4
+                class="nc-text-ocean"
+                style="margin-bottom: var(--nc-space-md)"
+              >
+                🚀 Step 3: Start Working
+              </h4>
+              <div class="nc-list-item">
+                <span class="nc-text-ink">Create and assign tasks</span>
+              </div>
+              <div class="nc-list-item">
+                <span class="nc-text-ink">Track progress in real-time</span>
+              </div>
+              <div class="nc-list-item-subtle">
+                <span class="nc-text-pebble">Celebrate milestones 🎉</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: var(--nc-space-xl)">
+            <div
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: var(--nc-space-sm);
+              "
+            >
+              <span class="nc-text-pebble">Live Status:</span>
+              <span
+                style="
+                  width: 8px;
+                  height: 8px;
+                  border-radius: 50%;
+                  background: var(--nc-emerald);
+                "
+                class="nc-pulse"
+              ></span>
+              <span class="nc-text-ocean">All systems operational</span>
+              <button
+                class="nc-toggle-on"
+                style="margin-left: var(--nc-space-md)"
+              >
+                ON
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" id="pricing" style="background: var(--nc-ash)">
+      <div class="section-header">
+        <h2 class="nc-text-gradient-ocean">Simple, Transparent Pricing</h2>
+        <p>
+          No hidden fees.
+          <span class="nc-text-highlight-emerald">No surprises</span>. Cancel
+          anytime.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="nc-card pricing-card">
+          <h3>Starter</h3>
+          <div class="pricing-price">$0 <span>/ month</span></div>
+          <ul class="pricing-features">
+            <li>Up to 5 team members</li>
+            <li>3 active projects</li>
+            <li>Basic analytics</li>
+            <li>Email support</li>
+          </ul>
+          <button class="nc-btn nc-btn-outline" style="width: 100%">
+            Get Started
+          </button>
+        </div>
+
+        <div class="nc-card pricing-card featured">
+          <h3>Professional</h3>
+          <div class="pricing-price">$12 <span>/ user / month</span></div>
+          <ul class="pricing-features">
+            <li>Unlimited team members</li>
+            <li>Unlimited projects</li>
+            <li>Advanced analytics</li>
+            <li>Priority support</li>
+            <li>Custom workflows</li>
+          </ul>
+          <button class="nc-btn nc-btn-primary" style="width: 100%">
+            Start Free Trial
+          </button>
+        </div>
+
+        <div class="nc-card pricing-card">
+          <h3>Enterprise</h3>
+          <div class="pricing-price">Custom</div>
+          <ul class="pricing-features">
+            <li>Everything in Pro</li>
+            <li>SSO & SAML</li>
+            <li>Dedicated support</li>
+            <li>Custom integrations</li>
+            <li>SLA guarantee</li>
+          </ul>
+          <button class="nc-btn nc-btn-secondary" style="width: 100%">
+            Contact Sales
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials">
+      <div class="section-header">
+        <h2 class="nc-text-gradient-emerald">Loved by Teams Everywhere</h2>
+        <p>See what our customers have to say about CloudFlow.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="nc-card testimonial-card">
+          <p class="testimonial-text">
+            "CloudFlow transformed how our team works. We've cut meeting time in
+            half and everyone knows exactly what they need to do."
+          </p>
+          <div class="testimonial-author">
+            <span class="nc-avatar">
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"
+                alt="Sarah Chen"
+              />
+            </span>
+            <div class="testimonial-author-info">
+              <h4>Sarah Chen</h4>
+              <p>Product Manager, TechCorp</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="nc-card testimonial-card">
+          <p class="testimonial-text">
+            "The automation features alone save us 10+ hours per week. It's like
+            having an extra team member."
+          </p>
+          <div class="testimonial-author">
+            <span class="nc-avatar">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100"
+                alt="Marcus Johnson"
+              />
+            </span>
+            <div class="testimonial-author-info">
+              <h4>Marcus Johnson</h4>
+              <p>Engineering Lead, StartupXYZ</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="nc-card testimonial-card">
+          <p class="testimonial-text">
+            "Finally, a project management tool that doesn't require a PhD to
+            use. Our whole team was onboarded in a day."
+          </p>
+          <div class="testimonial-author">
+            <span class="nc-avatar">
+              <img
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
+                alt="Emily Rodriguez"
+              />
+            </span>
+            <div class="testimonial-author-info">
+              <h4>Emily Rodriguez</h4>
+              <p>CEO, DesignStudio</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loading States Demo -->
+    <section class="section" style="background: var(--nc-snow)">
+      <div class="section-header">
+        <h2 class="nc-text-gradient-silver">Lightning Fast Loading</h2>
+        <p>Beautiful skeleton states keep users engaged while content loads.</p>
+      </div>
+
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: var(--nc-space-xl);
+          max-width: 1000px;
+          margin: 0 auto;
+        "
+      >
+        <div class="nc-card" style="padding: var(--nc-space-xl)">
+          <div class="nc-flex nc-gap-md nc-mb-md">
+            <div class="nc-skeleton nc-skeleton-avatar"></div>
+            <div class="nc-flex-1">
+              <div class="nc-skeleton nc-skeleton-text nc-w-half"></div>
+              <div
+                class="nc-skeleton nc-skeleton-text"
+                style="width: 40%"
+              ></div>
+            </div>
+          </div>
+          <div class="nc-skeleton nc-skeleton-image nc-mb-md"></div>
+          <div class="nc-skeleton nc-skeleton-text"></div>
+          <div class="nc-skeleton nc-skeleton-text" style="width: 80%"></div>
+        </div>
+
+        <div class="nc-card" style="padding: var(--nc-space-xl)">
+          <div class="nc-tip nc-tip-ocean nc-mb-md">
+            💡 <strong>Pro tip:</strong> Skeleton loaders reduce perceived wait
+            time by up to 40%.
+          </div>
+          <div class="nc-alert nc-alert-success">
+            <div class="nc-alert-title">✓ Optimized</div>
+            Content loads in under 200ms on average.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2 class="nc-text-glow">Ready to Get Started?</h2>
+      <p>
+        Join thousands of teams already using CloudFlow to deliver amazing
+        projects.
+      </p>
+      <button
+        class="nc-btn nc-btn-lg"
+        style="background: white; color: var(--nc-ocean)"
+      >
+        Start Your Free Trial
+      </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <h4>☁️ CloudFlow</h4>
+          <p style="color: var(--nc-pebble); font-size: 0.875rem">
+            Making project management simple and delightful for teams of all
+            sizes.
+          </p>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Integrations</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Status</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 CloudFlow. All rights reserved. Built with Nimbus.css ☁️</p>
+      </div>
+    </footer>
+
+    <!-- Toast Container for Demo -->
+    <div
+      class="nc-toast-container nc-toast-container-bottom-right"
+      id="toast-container"
+    ></div>
+
+    <script>
+      // Toast messages for different actions
+      const toastMessages = {
+        success: [
+          {
+            title: "Success!",
+            message: "Your action was completed successfully.",
+          },
+          { title: "Saved!", message: "Your changes have been saved." },
+          { title: "Done!", message: "Operation completed." },
+        ],
+        error: [
+          {
+            title: "Error",
+            message: "Something went wrong. Please try again.",
+          },
+          { title: "Failed", message: "Could not complete the action." },
+          { title: "Oops!", message: "An unexpected error occurred." },
+        ],
+        warning: [
+          { title: "Warning", message: "Please review before continuing." },
+          { title: "Attention", message: "This action cannot be undone." },
+          { title: "Notice", message: "Some features may be limited." },
+        ],
+        info: [
+          { title: "Info", message: "Here's something you should know." },
+          { title: "Tip", message: "Try our new features!" },
+          { title: "Update", message: "New improvements are available." },
+        ],
+      };
+
+      const toastIcons = {
+        success: "✓",
+        error: "✕",
+        warning: "⚠",
+        info: "ℹ",
+      };
+
+      function showToast(type) {
+        const container = document.getElementById("toast-container");
+        const messages = toastMessages[type];
+        const msg = messages[Math.floor(Math.random() * messages.length)];
+
+        const toast = document.createElement("div");
+        toast.className = `nc-toast nc-toast-${type}`;
+        toast.innerHTML = `
+          <span class="nc-toast-icon">${toastIcons[type]}</span>
+          <div class="nc-toast-content">
+            <div class="nc-toast-title">${msg.title}</div>
+            <div class="nc-toast-message">${msg.message}</div>
+          </div>
+          <button class="nc-toast-close" onclick="this.closest('.nc-toast').remove()">&times;</button>
+        `;
+        container.appendChild(toast);
+
+        setTimeout(() => {
+          toast.classList.add("nc-toast-out");
+          setTimeout(() => toast.remove(), 200);
+        }, 4000);
+      }
+
+      function showRandomToast() {
+        const types = ["success", "error", "warning", "info"];
+        const randomType = types[Math.floor(Math.random() * types.length)];
+        showToast(randomType);
+      }
+
+      // Attach click handlers to all buttons (except tabs)
+      document.querySelectorAll(".nc-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          showRandomToast();
+        });
+      });
+
+      // Tab functionality
+      const tabContainer = document.getElementById("workflow-tabs");
+      if (tabContainer) {
+        const tabs = tabContainer.querySelectorAll("button");
+        tabs.forEach((tab, index) => {
+          tab.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent toast from showing
+            tabs.forEach((t, i) => {
+              // Preserve position classes
+              const posClass =
+                i === 0
+                  ? "nc-tab-first"
+                  : i === tabs.length - 1
+                  ? "nc-tab-last"
+                  : "nc-tab-middle";
+              t.className = `nc-tab-inactive ${posClass}`;
+            });
+            const posClass =
+              index === 0
+                ? "nc-tab-first"
+                : index === tabs.length - 1
+                ? "nc-tab-last"
+                : "nc-tab-middle";
+            tab.className = `nc-tab-active ${posClass}`;
+          });
+        });
+      }
+
+      // Show welcome toast after 2 seconds
+      setTimeout(() => {
+        showToast("info");
+      }, 2000);
+    </script>
+  </body>
+</html>

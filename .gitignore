@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE Files
+.idea/
+
+# Old/unused files
+JSDELIVR-HOSTING-GUIDE.md
+TERMINAL-GIT-GUIDE.md
+deploy.sh
+check-auth.sh
+MIGRATION-SUMMARY.md
+WEB_COMPONENTS_GUIDE.md
+nimbus-style/
