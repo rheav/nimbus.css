@@ -317,7 +317,7 @@ A comprehensive card example combining multiple components:
 Modern shiny tip boxes with beautiful gradient that transitions from light frost blue to dark semi-transparent blue.
 
 ```html
-<!-- Default tip with silver-ish gradient -->
+<!-- Default tip with metallic gradient -->
 <div class="nc-tip">
   💡 <strong>Pro Tip:</strong> Your helpful message here.
 </div>
@@ -333,30 +333,30 @@ Modern shiny tip boxes with beautiful gradient that transitions from light frost
 </div>
 ```
 
-### Silver Gradient Components
+### Metallic Sky Gradient Components
 
-Beautiful metallic components with silver-ish gradient (from #7abcff to rgba(0, 78, 147, 0.5)). All silver components maintain the same metallic finish for consistency - never pastel.
+Beautiful metallic components with sky-like gradient (from #7abcff to rgba(0, 78, 147, 0.5)). All metallic sky components maintain the same metallic finish for consistency - never pastel.
 
 ```html
-<!-- Silver Button -->
-<button class="nc-btn nc-btn-silver">Silver Button</button>
+<!-- Metallic Sky Button -->
+<button class="nc-btn nc-btn-metallic-sky">Metallic Sky</button>
 
-<!-- Silver Card -->
-<div class="nc-card-silver">
-  <h3>Silver Card</h3>
+<!-- Metallic Sky Card -->
+<div class="nc-card-metallic-sky">
+  <h3>Metallic Sky Card</h3>
   <p>Content with metallic gradient background</p>
 </div>
 
-<!-- Silver Badge -->
-<span class="nc-badge nc-badge-silver">Silver</span>
+<!-- Metallic Sky Badge -->
+<span class="nc-badge nc-badge-metallic-sky">Metallic Sky</span>
 
-<!-- Silver Chip/Tag -->
-<span class="nc-chip nc-chip-silver">#metallic</span>
+<!-- Metallic Sky Chip/Tag -->
+<span class="nc-chip nc-chip-metallic-sky">#metallic-sky</span>
 
-<!-- Silver Alert -->
-<div class="nc-alert nc-alert-silver">
-  <div class="nc-alert-title">✨ Silver Alert</div>
-  Beautiful gradient with silver-ish finish.
+<!-- Metallic Sky Alert -->
+<div class="nc-alert nc-alert-metallic-sky">
+  <div class="nc-alert-title">✨ Metallic Sky Alert</div>
+  Beautiful gradient with metallic sky finish.
 </div>
 ```
 
@@ -365,8 +365,8 @@ Beautiful metallic components with silver-ish gradient (from #7abcff to rgba(0, 
 Apply gradient backgrounds to any element with these utility classes. All include a metallic shine overlay.
 
 ```html
-<!-- Silver metallic gradient -->
-<section class="nc-bg-silver">Silver section</section>
+<!-- Metallic sky gradient -->
+<section class="nc-bg-metallic-sky">Metallic sky section</section>
 
 <!-- Ocean gradient (frost to ocean blue) -->
 <div class="nc-bg-ocean">Ocean content</div>
@@ -388,20 +388,20 @@ Apply gradient backgrounds to any element with these utility classes. All includ
 
 Available classes:
 
-| Class            | Description                        |
-| ---------------- | ---------------------------------- |
-| `nc-bg-silver`   | Metallic blue-silver gradient      |
-| `nc-bg-ocean`    | Frost to ocean blue gradient       |
-| `nc-bg-frost`    | Light frosted glass with blur      |
-| `nc-bg-midnight` | Dark gradient (auto light text)    |
-| `nc-bg-success`  | Green gradient                     |
-| `nc-bg-danger`   | Red gradient                       |
-| `nc-bg-warning`  | Amber gradient                     |
-| `nc-bg-sky`      | Sky gradient with radial highlight |
-| `nc-gradient-bg` | White to frost vertical gradient   |
-| `nc-bg-fog`      | Solid off-white background         |
-| `nc-bg-ash`      | Solid light gray background        |
-| `nc-bg-snow`     | Solid white background             |
+| Class                | Description                        |
+| -------------------- | ---------------------------------- |
+| `nc-bg-metallic-sky` | Metallic sky gradient              |
+| `nc-bg-ocean`        | Frost to ocean blue gradient       |
+| `nc-bg-frost`        | Light frosted glass with blur      |
+| `nc-bg-midnight`     | Dark gradient (auto light text)    |
+| `nc-bg-success`      | Green gradient                     |
+| `nc-bg-danger`       | Red gradient                       |
+| `nc-bg-warning`      | Amber gradient                     |
+| `nc-bg-sky`          | Sky gradient with radial highlight |
+| `nc-gradient-bg`     | White to frost vertical gradient   |
+| `nc-bg-fog`          | Solid off-white background         |
+| `nc-bg-ash`          | Solid light gray background        |
+| `nc-bg-snow`         | Solid white background             |
 
 ### Glass Card
 
@@ -480,7 +480,7 @@ Clickable list items with hover slide effect:
 <span class="nc-text-gradient-ocean">ocean to sapphire</span>
 <span class="nc-text-gradient-emerald">emerald gradient</span>
 <span class="nc-text-gradient-sunset">sunset gradient</span>
-<span class="nc-text-gradient-silver">silver metallic</span>
+<span class="nc-text-gradient-metallic-sky">metallic sky</span>
 <span class="nc-text-gradient-animated">animated gradient</span>
 ```
 

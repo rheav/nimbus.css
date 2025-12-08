@@ -709,6 +709,11 @@ dd {
   box-shadow: var(--nc-shadow-ocean);
 }
 
+.nc-card-gradient h3,
+.nc-card-gradient .nc-card-title {
+  color: rgba(255, 255, 255, 0.95);
+}
+
 .nc-card-gradient .nc-btn-secondary {
   background: rgba(255, 255, 255, 0.9);
   border-color: rgba(255, 255, 255, 0.5);
@@ -717,6 +722,15 @@ dd {
 
 .nc-card-gradient .nc-btn-secondary:hover {
   background: white;
+}
+
+.nc-card-gradient .nc-btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.nc-card-gradient .nc-btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
 }
 
 /* ============================================
@@ -845,16 +859,16 @@ dd {
   border-color: var(--nc-ocean);
 }
 
-.nc-btn-outline-fog {
+.nc-btn-outline-light {
   background: transparent;
-  border: 2px solid var(--nc-fog);
-  color: var(--nc-fog);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  color: white;
 }
 
-.nc-btn-outline-fog:hover {
-  background: rgba(229, 234, 245, 0.2);
-  border-color: var(--nc-snow);
-  color: var(--nc-snow);
+.nc-btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: white;
+  color: white;
 }
 
 .nc-btn-sm {
@@ -1328,12 +1342,12 @@ input[type="range"]::-moz-range-thumb:hover {
 }
 
 /* ============================================
-   SILVER GRADIENT COMPONENTS
-   Beautiful gradient with silver-ish finish
+   METALLIC SKY GRADIENT COMPONENTS
+   Beautiful gradient with metallic finish
 ============================================ */
 
-/* Silver gradient card */
-.nc-card-silver {
+/* Metallic sky gradient card */
+.nc-card-metallic-sky {
   background: linear-gradient(to right, #7abcff, rgba(0, 78, 147, 0.5));
   background-clip: padding-box;
   border: 1px solid rgba(122, 188, 255, 0.4);
@@ -1348,7 +1362,7 @@ input[type="range"]::-moz-range-thumb:hover {
   font-family: var(--nc-font-family);
 }
 
-.nc-card-silver::before {
+.nc-card-metallic-sky::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1359,8 +1373,22 @@ input[type="range"]::-moz-range-thumb:hover {
   pointer-events: none;
 }
 
-/* Silver gradient button - Same metallic style as card */
-.nc-btn-silver {
+.nc-card-metallic-sky h3,
+.nc-card-metallic-sky .nc-card-title {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.nc-card-metallic-sky .nc-btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.nc-card-metallic-sky .nc-btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
+}
+
+/* Metallic sky gradient button - Same metallic style as card */
+.nc-btn-metallic-sky {
   background: linear-gradient(to right, #7abcff, rgba(0, 78, 147, 0.5));
   background-clip: padding-box;
   color: var(--nc-snow);
@@ -1371,7 +1399,7 @@ input[type="range"]::-moz-range-thumb:hover {
   overflow: hidden;
 }
 
-.nc-btn-silver::before {
+.nc-btn-metallic-sky::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1382,14 +1410,24 @@ input[type="range"]::-moz-range-thumb:hover {
   pointer-events: none;
 }
 
-.nc-btn-silver:hover {
+.nc-btn-metallic-sky:hover {
   transform: translateY(-2px);
+  background: linear-gradient(
+    to right,
+    rgba(122, 188, 255, 0.2),
+    rgba(0, 78, 147, 0.15)
+  );
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   box-shadow: 0 20px 25px -5px rgba(122, 188, 255, 0.5),
-    0 8px 10px -6px rgba(122, 188, 255, 0.5);
+    0 8px 10px -6px rgba(122, 188, 255, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--nc-midnight);
 }
 
-/* Silver gradient badge - Same metallic style */
-.nc-badge-silver {
+/* Metallic sky gradient badge */
+.nc-badge-metallic-sky {
   background: linear-gradient(to right, #7abcff, rgba(0, 78, 147, 0.5));
   background-clip: padding-box;
   border-color: rgba(122, 188, 255, 0.4);
@@ -1397,8 +1435,8 @@ input[type="range"]::-moz-range-thumb:hover {
   font-weight: 500;
 }
 
-/* Silver gradient alert - Same metallic style */
-.nc-alert-silver {
+/* Metallic sky gradient alert */
+.nc-alert-metallic-sky {
   background: linear-gradient(to right, #7abcff, rgba(0, 78, 147, 0.5));
   background-clip: padding-box;
   border-color: rgba(122, 188, 255, 0.4);
@@ -1407,8 +1445,8 @@ input[type="range"]::-moz-range-thumb:hover {
     0 4px 6px -4px rgba(122, 188, 255, 0.4);
 }
 
-/* Silver gradient chip - Same metallic style */
-.nc-chip-silver {
+/* Metallic sky gradient chip */
+.nc-chip-metallic-sky {
   background: linear-gradient(to right, #7abcff, rgba(0, 78, 147, 0.5));
   background-clip: padding-box;
   border-color: rgba(122, 188, 255, 0.4);
@@ -1420,13 +1458,13 @@ input[type="range"]::-moz-range-thumb:hover {
    BACKGROUND UTILITIES
 ============================================ */
 
-/* Silver gradient background */
-.nc-bg-silver {
+/* Metallic sky gradient background */
+.nc-bg-metallic-sky {
   background: linear-gradient(135deg, #7abcff, rgba(0, 78, 147, 0.5));
   position: relative;
 }
 
-.nc-bg-silver::before {
+.nc-bg-metallic-sky::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -1672,8 +1710,8 @@ input[type="range"]::-moz-range-thumb:hover {
   background-clip: text;
 }
 
-/* Gradient text - silver/metallic */
-.nc-text-gradient-silver {
+/* Gradient text - metallic sky */
+.nc-text-gradient-metallic-sky {
   background: linear-gradient(135deg, #c0c0c0, #71809670, #a8a8a8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -2467,7 +2505,7 @@ input[type="range"]::-moz-range-thumb:hover {
 .nc-btn-primary.nc-btn-loading::after,
 .nc-btn-success.nc-btn-loading::after,
 .nc-btn-danger.nc-btn-loading::after,
-.nc-btn-silver.nc-btn-loading::after,
+.nc-btn-metallic-sky.nc-btn-loading::after,
 .nc-btn-warning.nc-btn-loading::after {
   border-color: white;
   border-right-color: transparent;
@@ -3056,161 +3094,8 @@ input[type="range"]::-moz-range-thumb:hover {
 }
 
 /* ============================================
-   DEMO & DOCUMENTATION UTILITIES
+   CARD CONTENT UTILITIES
 ============================================ */
-
-/* Flex container for component demos */
-.nc-flex-demo {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-/* Grid for demo components */
-.nc-demo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-/* Color palette grid */
-.nc-color-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1rem;
-}
-
-/* Color swatch container */
-.nc-color-box {
-  text-align: center;
-  padding: 1rem;
-  border-radius: var(--nc-radius-lg);
-  background: var(--nc-snow);
-  border: 1px solid var(--nc-border-primary);
-}
-
-/* Color sample (the colored rectangle) */
-.nc-color-swatch {
-  height: 80px;
-  border-radius: var(--nc-radius-sm);
-  margin-bottom: 0.5rem;
-}
-
-/* Color label styling */
-.nc-color-box strong {
-  display: block;
-  margin-bottom: 0.25rem;
-  color: var(--nc-midnight);
-}
-
-.nc-color-box code {
-  font-size: 0.75rem;
-  background: var(--nc-ash);
-  padding: 0.125rem 0.375rem;
-  border-radius: var(--nc-radius-sm);
-}
-
-/* Preview content wrapper - centered with max-width */
-.nc-preview-centered {
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.nc-preview-wide {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Margin utilities for demos */
-.nc-mb-sm {
-  margin-bottom: var(--nc-space-sm);
-}
-
-.nc-mb-md {
-  margin-bottom: var(--nc-space-md);
-}
-
-.nc-mb-lg {
-  margin-bottom: var(--nc-space-lg);
-}
-
-/* Gap utilities */
-.nc-gap-sm {
-  gap: var(--nc-space-sm);
-}
-
-.nc-gap-md {
-  gap: var(--nc-space-md);
-}
-
-/* Flex utilities */
-.nc-flex {
-  display: flex;
-}
-
-.nc-flex-1 {
-  flex: 1;
-}
-
-.nc-flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nc-flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Width utilities */
-.nc-w-full {
-  width: 100%;
-}
-
-.nc-w-half {
-  width: 50%;
-}
-
-/* Text utilities */
-.nc-text-sm {
-  font-size: 0.875rem;
-}
-
-.nc-text-xs {
-  font-size: 0.75rem;
-}
-
-.nc-text-center {
-  text-align: center;
-}
-
-/* Text colors */
-.nc-text-fog {
-  color: var(--nc-fog);
-}
-
-.nc-text-snow {
-  color: var(--nc-snow);
-}
-
-.nc-text-pebble {
-  color: var(--nc-pebble);
-}
-
-.nc-text-ocean {
-  color: var(--nc-ocean);
-}
-
-.nc-font-semibold {
-  font-weight: 600;
-}
-
-/* Card content utilities */
 .nc-card-title {
   margin-top: 0;
   margin-bottom: var(--nc-space-sm);
