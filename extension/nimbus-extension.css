@@ -1,0 +1,339 @@
+/**
+ * NimbusCatcher Extension Style System
+ * A frosted glass, blue-gradient design system for Chrome extensions
+ * 
+ * Based on nimbus.css library
+ * https://github.com/rheav/nimbus.css
+ */
+
+/* ============================================
+   COLOR VARIABLES
+   ============================================ */
+:root {
+  /* Primary Colors */
+  --nc-frost: #7abcff; /* Light blue - primary accent */
+  --nc-ocean: #006bc8; /* Deep blue - text/links */
+  --nc-sapphire: #004e93; /* Dark blue - gradients */
+  --nc-midnight: #000e19; /* Near black - headers */
+
+  /* Neutral Colors */
+  --nc-snow: #ffffff; /* Pure white */
+  --nc-fog: #fafafa; /* Off-white backgrounds */
+  --nc-ash: #f5f5f5; /* Light gray - inactive states */
+  --nc-pebble: #8a8d90; /* Medium gray - secondary text */
+  --nc-ink: #0a0a0a; /* Near black - primary text */
+
+  /* Accent Colors */
+  --nc-sky: #deeffe; /* Very light blue - highlights */
+  --nc-emerald: #00c87b; /* Green - success/enabled */
+  --nc-forest: #007447; /* Dark green - success text */
+  --nc-sandy: #f7c77a; /* Yellow/gold - favorites */
+  --nc-danger: #ef4444; /* Red - errors/warnings */
+
+  /* Border Radius */
+  --nc-radius-sm: 0.375rem; /* 6px - buttons, small elements */
+  --nc-radius-md: 0.375rem; /* 6px - cards, inputs */
+  --nc-radius-lg: 0.5rem; /* 8px - large containers */
+
+  /* Shadows */
+  --nc-shadow-frost:
+    0 10px 15px -3px rgba(122, 188, 255, 0.4),
+    0 4px 6px -4px rgba(122, 188, 255, 0.4);
+  --nc-shadow-ocean:
+    0 10px 15px -3px rgba(0, 107, 200, 0.3),
+    0 4px 6px -4px rgba(0, 107, 200, 0.3);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+*::-webkit-scrollbar {
+  width: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, #fff, rgba(122, 188, 255, 0.5));
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    rgba(122, 188, 255, 0.5),
+    rgba(0, 107, 200, 0.6)
+  );
+  border-radius: 4px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 200, 123, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 200, 123, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 200, 123, 0);
+  }
+}
+
+@keyframes pulseLiveGRN {
+  0% {
+    box-shadow: 0 0 rgba(0, 222, 128, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 rgba(74, 222, 128, 0);
+  }
+}
+
+/* ============================================
+   CONTAINER STYLES
+   ============================================ */
+
+/* Main popup container */
+.nc-popup {
+  width: 420px;
+  background: linear-gradient(
+    to bottom,
+    var(--nc-snow),
+    rgba(122, 188, 255, 0.5)
+  );
+  border: 1px solid var(--nc-frost);
+  padding: 24px;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+/* Gradient background - for full page/sidepanel */
+.nc-gradient-bg {
+  background: linear-gradient(
+    to bottom,
+    var(--nc-snow),
+    rgba(122, 188, 255, 0.5)
+  );
+}
+
+/* Frosted glass card */
+.nc-glass-card {
+  background: rgba(250, 250, 250, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(122, 188, 255, 0.5);
+  border-radius: 6px;
+  box-shadow: var(--nc-shadow-frost);
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+/* Gradient text title */
+.nc-title-gradient {
+  font-size: 20px;
+  font-weight: 200;
+  background: linear-gradient(to right, var(--nc-frost), var(--nc-ocean));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+
+/* Tab button - active state */
+.nc-tab-active {
+  padding: 8px 16px;
+  border: 1px solid rgba(122, 188, 255, 0.7);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.3s;
+  background: linear-gradient(to right, var(--nc-frost), rgba(0, 78, 147, 0.5));
+  color: var(--nc-snow);
+  box-shadow: 0 10px 15px -3px rgba(122, 188, 255, 0.7);
+}
+
+/* Tab button - inactive state */
+.nc-tab-inactive {
+  padding: 8px 16px;
+  border: 1px solid rgba(122, 188, 255, 0.7);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+  transition: all 0.3s;
+  background: var(--nc-ash);
+  color: var(--nc-ink);
+  box-shadow: 0 4px 6px -1px rgba(122, 188, 255, 0.4);
+}
+
+/* Toggle button - ON state */
+.nc-toggle-on {
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  background: var(--nc-emerald);
+  color: var(--nc-snow);
+  border: none;
+  border-radius: 6px;
+}
+
+/* Toggle button - OFF state */
+.nc-toggle-off {
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  background: var(--nc-ash);
+  color: var(--nc-pebble);
+  border: none;
+  border-radius: 6px;
+}
+
+/* Icon button */
+.nc-icon-btn {
+  padding: 4px;
+  background: rgba(122, 188, 255, 0.2);
+  border: 1px solid rgba(122, 188, 255, 0.5);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nc-icon-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Icon button - active/favorite state */
+.nc-icon-btn-active {
+  padding: 4px;
+  background: var(--nc-sandy);
+  border: 1px solid rgba(122, 188, 255, 0.5);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nc-icon-btn-active:hover {
+  transform: scale(1.1);
+}
+
+/* ============================================
+   STATUS INDICATOR
+   ============================================ */
+.nc-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.nc-status-dot.active {
+  background: var(--nc-emerald);
+  box-shadow: 0 0 0 3px rgba(0, 200, 123, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.nc-status-dot.inactive {
+  background: var(--nc-pebble);
+}
+
+/* ============================================
+   LIST ITEMS
+   ============================================ */
+.nc-list-item {
+  background: rgba(122, 188, 255, 0.1);
+  border: 1px solid rgba(122, 188, 255, 0.3);
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nc-list-item:hover {
+  transform: translateX(4px);
+}
+
+/* Shop item variant - slightly different opacity */
+.nc-shop-item {
+  background: rgba(122, 188, 255, 0.08);
+  border: 1px solid rgba(122, 188, 255, 0.25);
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nc-shop-item:hover {
+  transform: translateX(2px);
+}
+
+/* ============================================
+   BADGE / VERSION TAG
+   ============================================ */
+.nc-badge {
+  padding: 4px 16px;
+  font-size: 12px;
+  background: var(--nc-frost);
+  color: var(--nc-snow);
+  border: 1px solid rgba(0, 107, 200, 0.4);
+  border-radius: 6px;
+  box-shadow: var(--nc-shadow-ocean);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.nc-text-ocean {
+  color: var(--nc-ocean);
+}
+.nc-text-pebble {
+  color: var(--nc-pebble);
+}
+.nc-text-ink {
+  color: var(--nc-ink);
+}
+.nc-text-snow {
+  color: var(--nc-snow);
+}
+
+.nc-bg-frost {
+  background: var(--nc-frost);
+}
+.nc-bg-fog {
+  background: var(--nc-fog);
+}
+.nc-bg-ash {
+  background: var(--nc-ash);
+}
